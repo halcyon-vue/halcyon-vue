@@ -1,0 +1,106 @@
+// TODO: make this not px
+
+@mixin display-large {
+    font-size: 57px;
+    line-height: 64px;
+    letter-spacing: -0.25;
+}
+
+@mixin display-medium {
+    font-size: 45px;
+    line-height: 52px;
+}
+
+@mixin display-small {
+    font-size: 36px;
+    line-height: 44px;
+}
+
+@mixin title-large {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 500;
+}
+
+
+@mixin title-medium {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15;
+    font-weight: 500;
+}
+
+@mixin label-large {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.1;
+    font-weight: 500;
+}
+
+@mixin label-large {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.1;
+    font-weight: 500;
+}
+
+@mixin label-small {
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 500;
+}
+
+@mixin body-large {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5;
+}
+
+@mixin body-medium {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25;
+}
+
+@mixin body-small {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.25;
+}
+
+@mixin grade($amount) {
+    font-feature-settings: "grad" $amount;
+}
+
+@mixin shadow-sm {
+    box-shadow: 0 2px 2px 0 var(--halcyon-shadow),0 3px 1px -2px var(--halcyon-shadow),0 1px 5px 0 var(--halcyon-shadow);
+}
+
+@mixin shadow-md {
+    box-shadow: 0 4px 5px 0 var(--halcyon-shadow),0 1px 10px 0 var(--halcyon-shadow),0 2px 4px -1px var(--halcyon-shadow);
+}
+
+$te-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+$te-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+$te-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+
+$te-emphasized: $te-standard; // according to spec, fsr
+$te-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+$te-emphasized-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+
+$duration-short-1:      50ms;
+$duration-short-2:      100ms;
+$duration-short-3:      150ms;
+$duration-short-4:      200ms;
+$duration-medium-1:     250ms;
+$duration-medium-2:     300ms;
+$duration-medium-3:     350ms;
+$duration-medium-4:     400ms;
+$duration-long-1:       450ms;
+$duration-long-2:       500ms;
+$duration-long-3:       550ms;
+$duration-long-4:       600ms;
+$duration-extra-long-1: 700ms;
+$duration-extra-long-2: 800ms;
+$duration-extra-long-3: 900ms;
+$duration-extra-long-4: 1000ms;
