@@ -7,7 +7,7 @@ import Icons from "unplugin-icons/vite";
 export default defineConfig({
   title: "Halcyon Docs",
   description: "Documentation for halcyon-vue",
-  base: 'https://halcyon-vue.github.io/',
+  base: 'https://halcyon-vue.github.io/halcyon-vue',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
