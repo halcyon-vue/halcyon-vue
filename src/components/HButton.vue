@@ -25,21 +25,25 @@ const icon = props.removeEmptyPadding || (slots.default && !props.addEmptyPaddin
 </script>
 
 <template>
-    <button
-        :class="[kind, { icon }]"
+    <component
+        :is="as || 'button'"
+        :class="[kind, { icon }, 'button']"
         :aria-label="label || content"
         :disabled="disabled"
+        :to="as === 'router-link' ? to : undefined"
+        :href="as === 'a' ? to : undefined"
     >
         <slot/>
         <span v-if="content">{{ content }}</span>
-    </button>
+  </component>
 </template>
 
 <style scoped lang="scss">
 @use "../util";
 
-button {
+.button {
   @include util.label-large;
+  max-width: min-content;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -58,24 +62,25 @@ button {
   }
   span {
     vertical-align: middle;
+    text-decoration: none;
   }
 }
 
 .icon {
   padding-left: 16px;
 }
-:is(button.filled, button.filled-tonal, button.elevated):disabled {
+:is(.button.filled, .button.filled-tonal, .button.elevated):disabled {
   pointer-events: none;
   box-shadow: none;
   background-color: var(--halcyon-on-surface-o12);
   color: var(--halcyon-on-surface-o38);
 }
 
-:is(button.filled, button.filled-tonal):is(:hover, :focus):not(:disabled), button.elevated {
+:is(.button.filled, .button.filled-tonal):is(:hover, :focus):not(:disabled), .button.elevated {
   @include util.shadow-sm;
 }
 
-button.filled {
+.button.filled {
   background-color: var(--halcyon-primary);
   color: var(--halcyon-on-primary);
 
@@ -88,7 +93,7 @@ button.filled {
   }
 }
 
-button.filled-tonal {
+.button.filled-tonal {
   background-color: var(--halcyon-secondary-container);
   color: var(--halcyon-on-secondary-container);
 
@@ -101,11 +106,11 @@ button.filled-tonal {
   }
 }
 
-button.elevated, button.outline, button.text {
+.button.elevated, .button.outline, .button.text {
   color: var(--halcyon-primary);
 }
 
-button.elevated {
+.button.elevated {
   background-color: var(--halcyon-surface-container-low);
 
   &:is(:hover, :focus) {
@@ -114,11 +119,11 @@ button.elevated {
   }
 }
 
-button.outline {
+.button.outline {
   border: 1px solid var(--halcyon-outline);
 }
 
-:is(button.outline, button.text) {
+:is(.button.outline, .button.text) {
   &:hover {
     background-color: var(--halcyon-primary-o8);
   }

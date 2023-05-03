@@ -92,7 +92,7 @@ fonts on Google Fonts yourself.)
 
 ## License
 
-MIT
+[MIT][license]
 
 [vite]: https://vitejs.dev
 [m3]: https://m3.material.io
@@ -101,4 +101,4 @@ MIT
 [roboto-flex]: https://fonts.google.com/specimen/Roboto+Flex
 [roboto]: https://fonts.google.com/specimen/Roboto
 [noto-sans]: https://fonts.google.com/noto/specimen/Noto+Sans?query=noto
-
+[license]: https://github.com/halcyon-vue/halcyon-vue/blob/main/LICENSE

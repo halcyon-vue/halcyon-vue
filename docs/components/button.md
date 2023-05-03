@@ -65,6 +65,8 @@ const capitalizeFirst = s =>
     </div>
 </preview>
 
+<h-button kind="filled" as="a" to="https://autumns.page" content="aaa" />
+
 ::: details Source code
 
 ```html
@@ -119,7 +121,7 @@ A common button, ideal for your app's most basic actions.
 
 The default slot is used for icons.
 
-## Pitfalls
+## Pitfalls / Known bugs
 
 Due to it being
 [somewhat difficult to tell if a slot is actually being rendered][vuejs-4733],
@@ -127,6 +129,9 @@ the component may not respond correctly if an icon is dynamically removed/added,
 although changing the icon should work fine. As a stopgap, you can use
 `add-empty-padding` and/or `remove-empty-padding` in order to force the button
 to render in the desired manner.
+
+Additionally, if `as` is set to `a` or `router-link`, an underline may show
+on hover.
 
 [vuejs-4733]: https://github.com/vuejs/core/issues/4733
 [m3-button]: https://m3.material.io/components/buttons/overview
