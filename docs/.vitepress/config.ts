@@ -33,7 +33,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/auctumnus/halcyon' }
+      { icon: 'github', link: 'https://github.com/halcyon-vue/halcyon-vue' }
     ],
     footer: {
       message: 'Made with ❤ by <a href="https://autumns.page">Autumn</a>',
