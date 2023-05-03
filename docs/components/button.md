@@ -65,8 +65,6 @@ const capitalizeFirst = s =>
     </div>
 </preview>
 
-<h-button kind="filled" as="a" to="https://autumns.page" content="aaa" />
-
 ::: details Source code
 
 ```html
