@@ -54,7 +54,7 @@ import { HButton } from 'halcyon-vue'
 </template>
 ```
 
-Docs forthcoming.
+[You can browse our documentation online!][halcyon-docs]
 
 ### Generating a Theme
 
@@ -102,3 +102,4 @@ fonts on Google Fonts yourself.)
 [roboto]: https://fonts.google.com/specimen/Roboto
 [noto-sans]: https://fonts.google.com/noto/specimen/Noto+Sans?query=noto
 [license]: https://github.com/halcyon-vue/halcyon-vue/blob/main/LICENSE
+[halcyon-docs]: https://halcyon-vue.github.io/halcyon-vue
