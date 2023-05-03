@@ -46,7 +46,7 @@ const capitalizeFirst = s =>
     s.charAt(0).toUpperCase() + s.slice(1).replace('-', ' ')
 </script>
 
-<preview :options="previewOptions" v-slot="{ state }" style="margin-top: 1rem;">
+<preview :options="previewOptions" v-slot="{ state }">
     <div style="display: flex; flex-direction: row; gap: 1rem;">
         <h-button
             :kind="state.kind"
