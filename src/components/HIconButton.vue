@@ -167,10 +167,8 @@ const toggle = () => {
 .h-icon-button:is(.standard, .outlined):not(.selected):disabled {
   color: var(--halcyon-on-surface-o38);
 }
-</style>
 
-<style lang="scss">
-.h-icon-button svg {
+.h-icon-button:deep(svg) {
   width: 24px;
   height: 24px;
 }

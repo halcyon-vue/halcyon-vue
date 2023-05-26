@@ -450,10 +450,7 @@ label {
     color: var(--halcyon-on-surface-o38);
   }
 }
-</style>
-
-<style>
-.text-field .icon-container svg {
+.icon-container:deep(svg) {
   height: 24px;
   width: 24px;
 }
