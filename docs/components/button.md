@@ -1,4 +1,4 @@
-# Common Button
+# Common button
 
 <script setup>
 import { HButton } from '../../src/'
@@ -30,8 +30,8 @@ const previewOptions = {
                 label: 'Elevated'
             },
             {
-                value: 'outline',
-                label: 'Outline'
+                value: 'outlined',
+                label: 'Outlined'
             },
             {
                 value: 'text',
@@ -47,7 +47,7 @@ const capitalizeFirst = s =>
 </script>
 
 <preview :options="previewOptions" v-slot="{ state }">
-    <div style="display: flex; flex-direction: row; gap: 1rem;">
+    <div class="preview-row">
         <h-button
             :kind="state.kind"
             :content="capitalizeFirst(state.kind) + ' button'"
@@ -115,7 +115,7 @@ A common button, ideal for your app's most basic actions.
 
 ## Slots
 
-### default
+### Default
 
 The default slot is used for icons.
 

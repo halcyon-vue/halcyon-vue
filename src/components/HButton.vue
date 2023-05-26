@@ -3,7 +3,7 @@ import { useSlots } from 'vue'
 
 const props = defineProps<{
     // The kind of button to render.
-    kind: 'elevated' | 'filled' | 'filled-tonal' | 'outline' | 'text',
+    kind: 'elevated' | 'filled' | 'filled-tonal' | 'outlined' | 'text',
     // The text content to include in the button.
     content?: string,
     // The label to use for accessibility.
@@ -106,7 +106,7 @@ const icon = props.removeEmptyPadding || (slots.default && !props.addEmptyPaddin
   }
 }
 
-.button.elevated, .button.outline, .button.text {
+.button.elevated, .button.outlined, .button.text {
   color: var(--halcyon-primary);
 }
 
@@ -119,11 +119,11 @@ const icon = props.removeEmptyPadding || (slots.default && !props.addEmptyPaddin
   }
 }
 
-.button.outline {
+.button.outlined {
   border: 1px solid var(--halcyon-outline);
 }
 
-:is(.button.outline, .button.text) {
+:is(.button.outlined, .button.text) {
   &:hover {
     background-color: var(--halcyon-primary-o8);
   }

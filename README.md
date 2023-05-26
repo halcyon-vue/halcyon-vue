@@ -90,6 +90,11 @@ and Noto Sans:
 (This snippet probably imports more than you'll need, so consider selecting the
 fonts on Google Fonts yourself.)
 
+### Icons
+
+You should use [unplugin-icons] for Material Design icons. It's what the docs
+use, and it's the only thing tested with.
+
 ## License
 
 [MIT][license]
@@ -103,3 +108,4 @@ fonts on Google Fonts yourself.)
 [noto-sans]: https://fonts.google.com/noto/specimen/Noto+Sans?query=noto
 [license]: https://github.com/halcyon-vue/halcyon-vue/blob/main/LICENSE
 [halcyon-docs]: https://halcyon-vue.github.io/halcyon-vue
+[unplugin-icons]: https://github.com/antfu/unplugin-icons

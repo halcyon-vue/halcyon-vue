@@ -26,8 +26,16 @@ export default defineConfig({
       {
         text: 'Components',
         items: [
-          { text: 'Button', link: '/components/button' },
+          {
+            text: 'Buttons',
+            collapsed: true,
+            items: [
+              { text: 'Common button', link: '/components/button' },
+              { text: 'Icon button', link: '/components/icon-button' },
+            ]
+          },
           { text: 'Switch', link: '/components/switch' },
+          { text: 'Text field', link: '/components/text-field' },
         ]
       }
     ],
@@ -43,7 +51,9 @@ export default defineConfig({
   vite: {
     plugins: [
       Halcyon(),
-      Icons(),
+      Icons({
+        //scale: 1.2
+      }),
       vueJsx(),
     ]
   }

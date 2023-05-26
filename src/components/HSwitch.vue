@@ -2,29 +2,39 @@
 import { computed, ref, useSlots } from 'vue'
 
 const props = defineProps<{
-  id: string
-  disabled?: boolean
-  modelValue?: boolean
+  id: string;
+  disabled?: boolean;
+  modelValue?: boolean;
 }>()
 
-const emit = defineEmits<{(e: 'update:modelValue', modelValue: boolean): any}>()
+const emit = defineEmits<{(e: 'update:modelValue', modelValue: boolean): any;}>()
 
 const value = ref(props.modelValue)
 const toggle = () => {
-  value.value = !(value.value)
+  value.value = !value.value
   emit('update:modelValue', value.value)
 }
 
 const slots = useSlots()
-const hasIcon = computed(() => (value.value && slots.on) || (!value.value && slots.off))
+const hasIcon = computed(
+  () => (value.value && slots.on) || (!value.value && slots.off)
+)
 </script>
 
 <template>
   <label class="switch">
-    <input :disabled="disabled"  :id="id"  type="checkbox" @input="toggle" :checked="value">
+    <input
+      :disabled="disabled"
+      :id="id"
+      type="checkbox"
+      @input="toggle"
+      :checked="value"
+    />
     <span class="thumb" :class="{ 'has-icon': hasIcon }">
       <slot name="on" v-if="value && hasIcon" />
-      <span v-else-if="(!value) && hasIcon" class="off-container"><slot name="off" /></span>
+      <span v-else-if="!value && hasIcon" class="off-container"
+        ><slot name="off"
+      /></span>
       <template v-else>&nbsp;</template>
     </span>
     <span class="slider" :aria-label="value ? 'on' : 'off'" />
@@ -33,7 +43,7 @@ const hasIcon = computed(() => (value.value && slots.on) || (!value.value && slo
 
 <style scoped lang="scss">
 @use "../util";
- /* The switch - the box around the slider */
+/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -48,7 +58,8 @@ const hasIcon = computed(() => (value.value && slots.on) || (!value.value && slo
   height: 0;
 }
 
-.slider, .thumb {
+.slider,
+.thumb {
   position: absolute;
   transition-timing-function: util.$te-standard;
   transition-duration: util.$duration-short-4;
@@ -94,7 +105,6 @@ input:disabled:not(:checked) ~ .slider {
   border-radius: 50%;
   color: var(--halcyon-surface-container-highest);
   user-select: none;
-  
 }
 
 .thumb.has-icon {
@@ -169,7 +179,6 @@ input:disabled ~ .thumb {
 .switch input:not(:disabled):active:checked ~ .thumb.has-icon {
   left: 2px;
 }
-
 
 input:checked + .slider {
   border: none;

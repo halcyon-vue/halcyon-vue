@@ -133,3 +133,19 @@ section + section {
     margin-top: 8px;
 }
 </style>
+
+<style>
+.preview-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+.preview-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+</style>

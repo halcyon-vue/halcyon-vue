@@ -55,11 +55,11 @@ A switch for single-option items.
 
 ## Slots
 
-### on
+### `on`
 
 The icon to use when the switch is on.
 
-### off
+### `off`
 
 The icon to use when the switch is off.
 
