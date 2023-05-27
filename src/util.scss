@@ -37,13 +37,6 @@
     font-weight: 500;
 }
 
-@mixin label-large {
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.1;
-    font-weight: 500;
-}
-
 @mixin label-small {
     font-size: 11px;
     line-height: 16px;
@@ -78,6 +71,10 @@
 
 @mixin shadow-md {
     box-shadow: 0 4px 5px 0 var(--halcyon-shadow),0 1px 10px 0 var(--halcyon-shadow),0 2px 4px -1px var(--halcyon-shadow);
+}
+
+@mixin shadow-lg {
+    box-shadow: 0 8px 10px 1px var(--halcyon-shadow),0 3px 14px 2px var(--halcyon-shadow),0 5px 5px -3px var(--halcyon-shadow);
 }
 
 $te-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
