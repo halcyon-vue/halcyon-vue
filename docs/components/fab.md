@@ -94,7 +94,9 @@ See the Material 3 documentation for this component: [Standard], [Extended].
 
 ```ts
 {
+  // The kind of FAB to render. Defaults to 'standard'.
   kind?: 'standard' | 'small' | 'large' | 'extended'
+  // The color of FAB to render. Defaults to 'surface'.
   color?: 'surface' | 'secondary' | 'tertiary'
 
   // If true, disables the shadow rendering on this component.
