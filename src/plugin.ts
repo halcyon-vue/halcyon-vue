@@ -179,6 +179,15 @@ const getContainerTones = (palette: Palette, kind: 'dark' | 'light') => {
     }
 }
 
+const stateLayerColors = (color: string, stateLayerColor: string) => {
+    return {
+        hover: mix(color, stateLayerColor, 8),
+        focus: mix(color, stateLayerColor, 12),
+        press: mix(color, stateLayerColor, 12),
+        drag:  mix(color, stateLayerColor, 16),
+    }
+}
+
 const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'light') => {
     const paletteElevations = {
         primary:   getPrimaryTones(palettes.primary,   kind),
@@ -193,6 +202,17 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
     const elevationVars = Object.entries(paletteElevations)
         .map(([name, elevations]) => 
             elevations.map((e, i) => `--halcyon-${kebab(name)}-elevation-${i+1}: ${e};`).join('\n')
+        ).join('\n')
+
+    const stateLayerVars = Object.entries({
+        surface: stateLayerColors(scheme.surfaceContainer, scheme.primary),
+        secondary: stateLayerColors(scheme.secondaryContainer, scheme.onSecondaryContainer),
+        tertiary: stateLayerColors(scheme.tertiaryContainer, scheme.onTertiaryContainer),
+    })
+        .map(([name, colors]) =>
+            Object.entries(colors)
+                .map(([state, color]) =>
+                    `--halcyon-${name}-${state}: ${color};\n`).join('\n')
         ).join('\n')
 
     // this always gets generated as a color that's way too dark, so fix it
@@ -212,6 +232,7 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
         .join('\n')
 
     return [
+        stateLayerVars,
         elevationVars,
         schemeVars,
         additional
