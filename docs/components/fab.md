@@ -4,6 +4,9 @@
 import { HFloatingActionButton } from '../../src/'
 import Preview from '../Preview.vue'
 import PencilOutline from '~icons/mdi/pencil-outline'
+import Document from '~icons/mdi/document'
+import Spreadsheet from '~icons/mdi/spreadsheet'
+import Presentation from '~icons/mdi/file-presentation-box'
 
 const previewOptions = {
     example: {
@@ -53,13 +56,13 @@ const previewOptions = {
         v-if="state.example === 'small'"
     >
         <h-floating-action-button kind="small" :color="state.color">
-            <pencil-outline />
+            <spreadsheet />
         </h-floating-action-button>
         <h-floating-action-button kind="small" :color="state.color">
-            <pencil-outline />
+            <presentation />
         </h-floating-action-button>
         <h-floating-action-button kind="small" :color="state.color">
-            <pencil-outline />
+            <document />
         </h-floating-action-button>
         <h-floating-action-button kind="standard" :color="state.color">
             <pencil-outline />
