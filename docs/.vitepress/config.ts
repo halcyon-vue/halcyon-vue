@@ -33,6 +33,7 @@ export default defineConfig({
               { text: 'Common button', link: '/components/button' },
               { text: 'Icon button', link: '/components/icon-button' },
               { text: 'Floating action button', link: '/components/fab' },
+              { text: 'Segmented button', link: '/components/segmented' },
             ]
           },
           { text: 'Switch', link: '/components/switch' },
