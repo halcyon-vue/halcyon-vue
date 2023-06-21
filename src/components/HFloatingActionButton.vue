@@ -125,6 +125,4 @@ button {
     height: 36px;
   }
 }
-
-.surface {}
 </style>
