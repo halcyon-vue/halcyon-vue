@@ -89,3 +89,10 @@
   --docsearch-primary-color: var(--vp-c-brand) !important;
 }
 
+/* fonts */
+
+:root {
+  --vp-font-family-base: "Roboto Flex", "Roboto", Roboto, "Noto Sans", system-ui,
+  "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji";
+}

@@ -10,7 +10,8 @@ import HSegmentedButton from './components/HSegmentedButton.vue'
 import HSwitch from './components/HSwitch.vue'
 // @ts-ignore
 import HTextField from './components/HTextField.vue'
-
+// @ts-ignore
+import HDialog from './components/HDialog.vue'
 
 export {
     HButton,
@@ -19,4 +20,5 @@ export {
     HSegmentedButton,
     HSwitch,
     HTextField,
+    HDialog
 }

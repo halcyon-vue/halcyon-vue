@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "vitepress dev docs --host",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@algolia/client-search": "^4.17.0",
+    "@headlessui/vue": "^1.7.13",
     "vue": "^3.2.47"
   },
   "devDependencies": {

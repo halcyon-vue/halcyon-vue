@@ -85,6 +85,45 @@ const previewOptions = {
     </h-floating-action-button>
 </preview>
 
+::: details Source code
+
+```html
+<div
+    style="display: flex; flex-direction: column; align-items: end;"
+    v-if="state.example === 'small'"
+>
+    <h-floating-action-button kind="small" :color="state.color">
+        <Spreadsheet />
+    </h-floating-action-button>
+    <h-floating-action-button kind="small" :color="state.color">
+        <Presentation />
+    </h-floating-action-button>
+    <h-floating-action-button kind="small" :color="state.color">
+        <Document />
+    </h-floating-action-button>
+    <h-floating-action-button kind="standard" :color="state.color">
+        <pencil-outline />
+    </h-floating-action-button>
+</div>
+<h-floating-action-button
+    kind="large"
+    :color="state.color"
+    v-else-if="state.example === 'large'"
+>
+    <pencil-outline />
+</h-floating-action-button>
+<h-floating-action-button
+    kind="extended"
+    :color="state.color"
+    content="New post"
+    v-else
+>
+    <pencil-outline />
+</h-floating-action-button>
+```
+
+:::
+
 The FAB represents the most important action on a screen. It puts key actions
 within reach. Optionally, this component can be an Extended FAB, which is wider
 than FABs to accommodate a text label and larger target area.
