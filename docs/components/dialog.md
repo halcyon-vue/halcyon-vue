@@ -1,13 +1,13 @@
 # Dialog
 
 <script setup>
-import { HButton } from '../../src/'
-import { HDialog } from '../../src/'
+import { HButton, HTextField, HDialog } from '../../src/'
 import { ref } from 'vue'
 import Preview from '../Preview.vue'
 import Reset from '~icons/mdi/rotate-left'
 
-const open = ref(false)
+const normalOpen = ref(false)
+const fullscreenOpen = ref(false)
 
 const previewOptions = {
     dividers: {
@@ -16,6 +16,11 @@ const previewOptions = {
         label: 'Dividers'
     },
 }
+
+const a = ref('')
+const b = ref('')
+const c = ref('')
+const d = ref('')
 </script>
 
 <style scoped>
@@ -36,31 +41,51 @@ const previewOptions = {
 </style>
 
 <preview :options="previewOptions" v-slot="{ state }">
-    <h-button kind="filled" content="Open dialog" @click="open = true" />
-    <h-dialog
-        v-model:open="open"
-        title="Reset settings?"
-        description="This will reset your app preferences back to their default settings. The following accounts will also be signed out:"
-        :dividers="state.dividers"
-        :actions="[{ label: 'Cancel', onClick: () => {} }, { label: 'Accept', onClick: () => {} }]"
-    >
-        <template #icon>
-            <Reset />
-        </template>
-        <template #content>
-            <div class="accounts">
-                <div>
-                    <img src="../images/albedo.png"><span>albedo@aleikats.example</span>
+    <div class="preview-col">
+        <h-button kind="filled-tonal" content="Open dialog" @click="normalOpen = true" />
+        <h-dialog
+            v-model:open="normalOpen"
+            title="Reset settings?"
+            description="This will reset your app preferences back to their default settings. The following accounts will also be signed out:"
+            :dividers="state.dividers"
+            :actions="[{ label: 'Cancel', onClick: () => {} }, { label: 'Accept', onClick: () => {} }]"
+        >
+            <template #icon>
+                <Reset />
+            </template>
+            <template #content>
+                <div class="accounts">
+                    <div>
+                        <img src="../images/albedo.png"><span>albedo@aleikats.example</span>
+                    </div>
+                    <div>
+                        <img src="../images/sucrose.png"><span>sucrose@aleikats.example</span>
+                    </div>
+                    <div>
+                        <img src="../images/klee.png"><span>klee@aleikats.example</span>
+                    </div>
                 </div>
-                <div>
-                    <img src="../images/sucrose.png"><span>sucrose@aleikats.example</span>
-                </div>
-                <div>
-                    <img src="../images/klee.png"><span>klee@aleikats.example</span>
-                </div>
-            </div>
-        </template>
-    </h-dialog>
+            </template>
+        </h-dialog>
+        <h-button kind="filled" content="Open fullscreen dialog" @click="fullscreenOpen = true" />
+        <h-dialog fullscreen title="New event" v-model:open="fullscreenOpen" :actions="[{ label: 'Accept', onClick: () => {} }]">
+            <template #content>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <h-text-field kind="outlined" v-model="a" name="email" label="Email" />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <h-text-field kind="outlined" v-model="b" name="event-name" label="Event name" />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <h-text-field kind="outlined" v-model="c" name="date" label="Date (from)" />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <h-text-field kind="outlined" v-model="d" name="date" label="Date (to)" />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </template>
+        </h-dialog>
+    </div>
 </preview>
 
 ::: details Source code
@@ -99,6 +124,7 @@ Dialogs provide important prompts in a user flow.
 [See the Material 3 documentation for this component][m3-dialog].
 
 ## Props
+
 ```ts
 {
   // The title of the dialog.

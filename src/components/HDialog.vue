@@ -8,6 +8,9 @@ import {
   DialogDescription
 } from '@headlessui/vue'
 import HButton from './HButton.vue'
+import HIconButton from './HIconButton.vue'
+import CloseButton from '~icons/mdi/close'
+import { vIntersectionObserver } from '@vueuse/components'
 
 type Action = () => (any | Promise<any>)
 
@@ -37,7 +40,7 @@ defineProps<{
   fullscreen?: boolean
 }>()
 
-const emit = defineEmits<{(e: 'update:open', modelValue: boolean): any;}>()
+const emit = defineEmits<{ (e: 'update:open', modelValue: boolean): any; }>()
 
 const close = () => emit('update:open', false)
 
@@ -49,41 +52,33 @@ const handleAction = (action: Action) => {
     close()
   }
 }
+
+type IntersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => void
+
+const onIntersectionObserver: IntersectionObserverCallback = (entries) => {
+  entries[0].target.classList.toggle('is-pinned', entries[0].intersectionRatio < 1)
+}
 </script>
 
 <template>
   <TransitionRoot as="template" appear :show="open">
     <Dialog @close="close" class="dialog">
-      <TransitionChild
-        as="template"
-        enter="scrim-active"
-        enter-from="scrim-from"
-        enter-to="scrim-to"
-        leave="scrim-active"
-        leave-from="scrim-to"
-        leave-to="scrim-from"
-      >
+      <TransitionChild as="template" enter="scrim-active" enter-from="scrim-from" enter-to="scrim-to" leave="scrim-active"
+        leave-from="scrim-to" leave-to="scrim-from">
         <div class="scrim" aria-hidden="true" />
       </TransitionChild>
-      <TransitionChild
-        as="template"
-        enter="panel-active"
-        enter-from="panel-fullscreen-from"
-        enter-to="panel-to"
-        leave="panel-active"
-        leave-from="panel-to"
-        leave-to="panel-fullscreen-from"
-      >
-        <DialogPanel class="fullscreen-panel" v-if="fullscreen">
-          <header>
+      <TransitionChild as="template" enter="panel-active" enter-from="panel-fullscreen-from" enter-to="panel-to"
+        leave="panel-active" leave-from="panel-to" leave-to="panel-fullscreen-from" v-if="fullscreen">
+        <DialogPanel class="fullscreen-panel">
+          <header v-intersection-observer="[onIntersectionObserver, { threshold: [1] }]">
+            <h-icon-button kind="standard" label="Close" @click="close" class="fs-icon">
+              <close-button />
+            </h-icon-button>
             <DialogTitle class="title">
               {{ title }}
             </DialogTitle>
-            <h-button
-              kind="text"
-              @click="handleAction(actions[actions.length - 1].onClick)"
-              :content="actions[actions.length - 1].label"
-            />
+            <h-button kind="text" @click="handleAction(actions[actions.length - 1].onClick)"
+              :content="actions[actions.length - 1].label" />
           </header>
           <DialogDescription class="description" v-if="description">
             {{ description }}
@@ -93,9 +88,14 @@ const handleAction = (action: Action) => {
             <slot name="content" />
           </div>
         </DialogPanel>
+      </TransitionChild>
+      <TransitionChild as="template" enter="panel-active" enter-from="panel-from" enter-to="panel-to" leave="panel-active"
+        leave-from="panel-to" leave-to="panel-from" v-else>
         <div class="panel-container" :class="{ dividers, 'has-icon': $slots.icon }">
           <DialogPanel class="panel">
-            <span class="icon-container" v-if="$slots.icon"><slot name="icon" /></span>
+            <span class="icon-container" v-if="$slots.icon">
+              <slot name="icon" />
+            </span>
             <DialogTitle class="title">{{ title }}</DialogTitle>
             <DialogDescription class="description" v-if="description">
               {{ description }}
@@ -106,13 +106,8 @@ const handleAction = (action: Action) => {
             </div>
 
             <div class="footer">
-              <h-button
-                kind="text"
-                v-for="action of actions"
-                :key="action.label"
-                @click="handleAction(action.onClick)"
-                :content="action.label"
-              />
+              <h-button kind="text" v-for="action of actions" :key="action.label" @click="handleAction(action.onClick)"
+                :content="action.label" />
             </div>
           </DialogPanel>
         </div>
@@ -123,6 +118,7 @@ const handleAction = (action: Action) => {
 
 <style lang="scss" scoped>
 @use "../util";
+
 .panel-container {
   position: fixed;
   inset: 0;
@@ -133,6 +129,11 @@ const handleAction = (action: Action) => {
   align-items: center;
   justify-content: center;
 }
+
+.fs-icon {
+  margin: 0 16px;
+}
+
 .panel {
   background-color: var(--halcyon-surface-container-high);
   color: var(--halcyon-on-surface);
@@ -144,34 +145,53 @@ const handleAction = (action: Action) => {
 }
 
 .fullscreen-panel {
-  background-color: var(--halcyon-surface-container-high);
+  background-color: var(--halcyon-surface);
   position: fixed;
   inset: 0;
   z-index: var(--halcyon-modal-z);
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 
   & header {
+    transition: background-color util.$duration-short-2 util.$te-standard;
+    color: var(--halcyon-on-surface);
+
+    position: sticky;
+    top: -1px;
+    padding-top: 1px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 16px;
+    height: 56px;
+    z-index: 50;
+
+    &.is-pinned {
+      background-color: var(--halcyon-surface-container-high);
+    }
 
     & h2 {
       flex: 1;
     }
+  }
+
+  & .content-container {
+    padding: 0 24px;
   }
 }
 
 .title {
   @include util.headline-small;
 }
+
 .description {
   @include util.body-medium;
   margin-bottom: 16px;
 }
 
-.title + .description {
+.title+.description {
   margin-top: 16px;
 }
 
@@ -216,7 +236,8 @@ const handleAction = (action: Action) => {
   z-index: var(--halcyon-modal-z);
 }
 
-.scrim-active, .panel-active {
+.scrim-active,
+.panel-active {
   transition-duration: util.$duration-short-4;
   transition-timing-function: util.$te-emphasized-decelerate;
 }

@@ -16,6 +16,8 @@
   "dependencies": {
     "@algolia/client-search": "^4.17.0",
     "@headlessui/vue": "^1.7.13",
+    "@vueuse/components": "^10.2.0",
+    "@vueuse/core": "^10.2.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
