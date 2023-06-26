@@ -28,14 +28,14 @@ export default defineConfig({
 })
 ```
 
-Import the theme and base CSS:
+Import the stylesheets:
 
 ```ts
 // main.ts
 import 'halcyon:reset.css' // optional if you're already using a css reset
 import 'halcyon:theme.css' // sets up the theme variables
-import 'halcyon:base.css'  // includes component styles and global styles
-                           // (e.g. body)
+import 'halcyon:base.css'  // includes global styles (e.g. body)
+import 'halcyon-vue/style' // includes component styles
 ```
 
 Now you can use the components however you should wish:
@@ -43,6 +43,8 @@ Now you can use the components however you should wish:
 ```html
 <script setup>
 import { HButton } from 'halcyon-vue'
+
+const alert = (msg) => window.alert(msg) // vue why
 </script>
 <template>
     <div>

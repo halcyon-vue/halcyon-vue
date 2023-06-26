@@ -1,9 +1,6 @@
 lockfileVersion: '6.0'
 
 dependencies:
-  '@algolia/client-search':
-    specifier: ^4.17.0
-    version: 4.17.0
   '@headlessui/vue':
     specifier: ^1.7.13
     version: 1.7.13(vue@3.3.4)
@@ -18,6 +15,9 @@ dependencies:
     version: 3.3.4
 
 devDependencies:
+  '@algolia/client-search':
+    specifier: ^4.17.0
+    version: 4.17.0
   '@iconify-json/mdi':
     specifier: ^1.1.50
     version: 1.1.52
@@ -104,6 +104,7 @@ packages:
 
   /@algolia/cache-common@4.17.0:
     resolution: {integrity: sha512-g8mXzkrcUBIPZaulAuqE7xyHhLAYAcF2xSch7d9dABheybaU3U91LjBX6eJTEB7XVhEsgK4Smi27vWtAJRhIKQ==}
+    dev: true
 
   /@algolia/cache-in-memory@4.17.0:
     resolution: {integrity: sha512-PT32ciC/xI8z919d0oknWVu3kMfTlhQn3MKxDln3pkn+yA7F7xrxSALysxquv+MhFfNAcrtQ/oVvQVBAQSHtdw==}
@@ -133,6 +134,7 @@ packages:
     dependencies:
       '@algolia/requester-common': 4.17.0
       '@algolia/transporter': 4.17.0
+    dev: true
 
   /@algolia/client-personalization@4.17.0:
     resolution: {integrity: sha512-RMzN4dZLIta1YuwT7QC9o+OeGz2cU6eTOlGNE/6RcUBLOU3l9tkCOdln5dPE2jp8GZXPl2yk54b2nSs1+pAjqw==}
@@ -148,9 +150,11 @@ packages:
       '@algolia/client-common': 4.17.0
       '@algolia/requester-common': 4.17.0
       '@algolia/transporter': 4.17.0
+    dev: true
 
   /@algolia/logger-common@4.17.0:
     resolution: {integrity: sha512-DGuoZqpTmIKJFDeyAJ7M8E/LOenIjWiOsg1XJ1OqAU/eofp49JfqXxbfgctlVZVmDABIyOz8LqEoJ6ZP4DTyvw==}
+    dev: true
 
   /@algolia/logger-console@4.17.0:
     resolution: {integrity: sha512-zMPvugQV/gbXUvWBCzihw6m7oxIKp48w37QBIUu/XqQQfxhjoOE9xyfJr1KldUt5FrYOKZJVsJaEjTsu+bIgQg==}
@@ -166,6 +170,7 @@ packages:
 
   /@algolia/requester-common@4.17.0:
     resolution: {integrity: sha512-XJjmWFEUlHu0ijvcHBoixuXfEoiRUdyzQM6YwTuB8usJNIgShua8ouFlRWF8iCeag0vZZiUm4S2WCVBPkdxFgg==}
+    dev: true
 
   /@algolia/requester-node-http@4.17.0:
     resolution: {integrity: sha512-bpb/wDA1aC6WxxM8v7TsFspB7yBN3nqCGs2H1OADolQR/hiAIjAxusbuMxVbRFOdaUvAIqioIIkWvZdpYNIn8w==}
@@ -179,6 +184,7 @@ packages:
       '@algolia/cache-common': 4.17.0
       '@algolia/logger-common': 4.17.0
       '@algolia/requester-common': 4.17.0
+    dev: true
 
   /@ampproject/remapping@2.2.1:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
