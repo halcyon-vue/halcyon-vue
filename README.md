@@ -17,7 +17,7 @@ Load the plugin in your Vite setup:
 
 ```ts
 import { defineConfig } from 'vite'
-import { Halcyon } from 'halcyon-vue'
+import { Halcyon } from 'halcyon-vue/plugin'
 import theme from './theme.json'
 // ...
 export default defineConfig({
@@ -33,8 +33,9 @@ Import the theme and base CSS:
 ```ts
 // main.ts
 import 'halcyon:reset.css' // optional if you're already using a css reset
-import 'halcyon:theme.css'
-import 'halcyon:base.css'
+import 'halcyon:theme.css' // sets up the theme variables
+import 'halcyon:base.css'  // includes component styles and global styles
+                           // (e.g. body)
 ```
 
 Now you can use the components however you should wish:

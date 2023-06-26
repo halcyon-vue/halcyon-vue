@@ -2,7 +2,23 @@
   "name": "halcyon-vue",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/halcyon-vue.cjs",
+  "module": "./dist/halcyon-vue.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./plugin": {
+      "import": "./dist/plugin.js",
+      "require": "./dist/plugin.cjs",
+      "types": "./dist/plugin.d.ts"
+    },
+    "./style": "./dist/style.css"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
@@ -37,6 +53,7 @@
     "typescript": "*",
     "unplugin-icons": "^0.16.1",
     "vite": "^4.3.3",
+    "vite-plugin-dts": "3.0.0-beta.1",
     "vitepress": "1.0.0-alpha.75"
   }
 }

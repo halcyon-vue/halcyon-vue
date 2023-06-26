@@ -1,4 +1,5 @@
 export default `
+@import url('halcyon-vue/style');
 body {
   font-family: "Roboto Flex", "Roboto", Roboto, "Noto Sans", system-ui,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
