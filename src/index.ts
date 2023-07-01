@@ -12,6 +12,10 @@ import HSwitch from './components/HSwitch.vue'
 import HTextField from './components/HTextField.vue'
 // @ts-ignore
 import HDialog from './components/HDialog.vue'
+// @ts-ignore
+import HMenu from './components/HMenu.vue'
+// @ts-ignore
+import HMenuButton from './components/HMenuButton.vue'
 
 export {
     HButton,
@@ -20,5 +24,7 @@ export {
     HSegmentedButton,
     HSwitch,
     HTextField,
-    HDialog
+    HDialog,
+    HMenu,
+    HMenuButton
 }

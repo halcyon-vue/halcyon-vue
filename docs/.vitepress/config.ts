@@ -49,6 +49,7 @@ export default defineConfig({
           { text: 'Switch', link: '/components/switch' },
           { text: 'Text field', link: '/components/text-field' },
           { text: 'Dialog', link: '/components/dialog' },
+          { text: 'Menu', link: '/components/menu' },
         ]
       }
     ],
