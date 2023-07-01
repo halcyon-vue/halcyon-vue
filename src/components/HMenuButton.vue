@@ -10,6 +10,7 @@ const props = defineProps<{
     isLink?: boolean
     useRouterLink?: boolean
     disabled?: boolean
+    to?: string
 }>()
 
 const getComponentKind = (): string => {
@@ -24,22 +25,39 @@ const getComponentKind = (): string => {
     }
 }
 
+const handleClick = (e: Event, close: () => any) => {
+    if(props.isLink) return
+    e.preventDefault()
+    if(props.hasSubmenu) return
+    if (props.onClick) {
+        props.onClick()
+    }
+    close()
+}
+
 </script>
 
 <template>
     <MenuItem
-        :as="getComponentKind()"
-        class="menu-item"
+        as="template"
         :disabled="disabled"
-        v-slot="{ close }"
-        @click="(isLink || onClick()) && close()"
+        v-slot="{ close, active }"
     >
-        <slot name="leading" />
-        <span class="label">{{ label }}</span>
-        <span class="trailing">
-            <slot v-if="!hasSubmenu" name="trailing" />
-            <menu-right v-else />
-        </span>
+        <component
+            class="menu-item"
+            :class="{ active }"
+            :is="getComponentKind()"
+            @click="e => handleClick(e, close)"
+            :to="to"
+            :href="to"
+        >
+            <slot name="leading" />
+            <span class="label">{{ label }}</span>
+            <span class="trailing">
+                <slot v-if="!hasSubmenu" name="trailing" />
+                <menu-right v-else />
+            </span>
+        </component>
     </MenuItem>
 </template>
 
@@ -80,7 +98,7 @@ const getComponentKind = (): string => {
         color: var(--halcyon-on-surface-variant);
     }
 
-    &[data-headlessui-state="active"] {
+    &.active {
         background-color: var(--halcyon-surface-container-highest);
     }
 
@@ -91,6 +109,14 @@ const getComponentKind = (): string => {
         &:deep(:is(svg, .trailing))  {
             color: var(--halcyon-on-surface-o38);
         }
+    }
+}
+
+a {
+    color: var(--halcyon-on-surface);
+    text-decoration: none;
+    :hover {
+        text-decoration: none;
     }
 }
 </style>

@@ -32,7 +32,7 @@ const alert = (msg) => window.alert(msg)
                     <h-menu-button label="Item 3" has-submenu />
                 </template>
                 <template #content>
-                    <h-menu-button label="Item 4" />
+                    <h-menu-button label="Item 4" is-link to="https://m3.material.io" />
                     <h-menu-button label="Item 5" />
                 </template>
             </h-submenu>
@@ -63,7 +63,7 @@ const alert = (msg) => window.alert(msg)
                 <h-menu-button label="Item 3" has-submenu />
             </template>
             <template #content>
-                <h-menu-button label="Item 4" />
+                <h-menu-button label="Item 4" is-link to="https://m3.material.io" />
                 <h-menu-button label="Item 5" />
             </template>
         </h-submenu>
