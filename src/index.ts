@@ -16,7 +16,10 @@ import HDialog from './components/HDialog.vue'
 import HMenu from './components/HMenu.vue'
 // @ts-ignore
 import HMenuButton from './components/HMenuButton.vue'
-
+// @ts-ignore
+import HMenuDivider from './components/HMenuDivider.vue'
+// @ts-ignore
+import HSubmenu from './components/HSubmenu.vue'
 export {
     HButton,
     HIconButton,
@@ -26,5 +29,7 @@ export {
     HTextField,
     HDialog,
     HMenu,
-    HMenuButton
+    HMenuButton,
+    HMenuDivider,
+    HSubmenu
 }
