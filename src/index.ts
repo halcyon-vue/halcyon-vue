@@ -1,6 +1,8 @@
 // @ts-ignore
 import HButton from './components/HButton.vue'
 // @ts-ignore
+import HBottomAppBar from './components/HBottomAppBar.vue'
+// @ts-ignore
 import HIconButton from './components/HIconButton.vue'
 // @ts-ignore
 import HFloatingActionButton from './components/HFloatingActionButton.vue'
@@ -22,6 +24,7 @@ import HMenuDivider from './components/HMenuDivider.vue'
 import HSubmenu from './components/HSubmenu.vue'
 export {
     HButton,
+    HBottomAppBar,
     HIconButton,
     HFloatingActionButton,
     HSegmentedButton,
