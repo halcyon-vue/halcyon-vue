@@ -45,7 +45,7 @@ const handleClick = (e: Event, close: () => any) => {
     >
         <component
             class="menu-item"
-            :class="{ active }"
+            :class="{ active, disabled }"
             :is="getComponentKind()"
             @click="e => handleClick(e, close)"
             :to="to"
@@ -102,7 +102,7 @@ const handleClick = (e: Event, close: () => any) => {
         background-color: var(--halcyon-surface-container-highest);
     }
 
-    &[data-headlessui-state="disabled"] {
+    &.disabled {
         color: var(--halcyon-on-surface-o38);
         pointer-events: none;
 
@@ -114,9 +114,9 @@ const handleClick = (e: Event, close: () => any) => {
 
 a {
     color: var(--halcyon-on-surface);
-    text-decoration: none;
+    text-decoration: none !important;
     :hover {
-        text-decoration: none;
+        text-decoration: none !important;
     }
 }
 </style>
