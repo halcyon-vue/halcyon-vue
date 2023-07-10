@@ -163,3 +163,15 @@ Navigation bars let people switch between UI views on smaller devices.
     badgeCount?: number
 }
 ```
+
+## Slots
+
+### `HNavigationBar`
+
+No slots.
+
+### `HNavigationButton`
+
+#### Default
+
+The default slot is used for the icon.
