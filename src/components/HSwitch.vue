@@ -48,6 +48,7 @@ const hasIcon = computed(
   position: relative;
   display: inline-block;
   width: 52px;
+  min-width: 52px;
   height: 32px;
 }
 
