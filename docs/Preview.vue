@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { nanoid } from 'nanoid'
 
 // TODO: make this not have `any`
@@ -23,12 +23,12 @@ interface BooleanOption {
 type Option = SelectOption | BooleanOption
 
 const props = defineProps<{
-    options: Record<string, Option>
+    options?: Record<string, Option>
 }>()
 
-const opts = Object.entries(props.options)
+const opts = props.options ? Object.entries(props.options) : undefined
 
-const state = reactive<Record<string, any>>(Object.fromEntries(opts.map(([name, option]) => [name, option.default])))
+const state = props.options ? reactive<Record<string, any>>(Object.fromEntries(opts.map(([name, option]) => [name, option.default]))) : ref(undefined)
 
 const id = nanoid()
 
@@ -42,10 +42,10 @@ const id = nanoid()
             <h1>Preview</h1>
         </header>
         <div class="preview-container">
-            <div class="preview-display">
+            <div class="preview-display" :class="{ 'no-options': !options }">
                 <slot :state="state"></slot>
             </div>
-            <div class="preview-options">
+            <div class="preview-options" v-if="options">
                 <section v-for="[name, option] of opts" :key="name">
                     <div v-if="option.kind === 'select'">
                         <label :for="`option-${name}-${id}`">{{ option.label }}</label>
@@ -112,6 +112,10 @@ header {
     border-bottom-left-radius: 8px;
     padding: 8px 16px;
     flex: 1;
+}
+
+.no-options {
+    border-bottom-right-radius: 8px;
 }
 
 .preview-display {

@@ -52,6 +52,13 @@
     font-weight: 500;
 }
 
+@mixin label-medium {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.5;
+    font-weight: 500;
+}
+
 @mixin label-small {
     font-size: 11px;
     line-height: 16px;

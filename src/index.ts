@@ -21,6 +21,10 @@ import HMenuButton from './components/HMenuButton.vue'
 // @ts-ignore
 import HMenuDivider from './components/HMenuDivider.vue'
 // @ts-ignore
+import HNavigationBar from './components/HNavigationBar.vue'
+// @ts-ignore
+import HNavigationButton from './components/HNavigationButton.vue'
+// @ts-ignore
 import HSubmenu from './components/HSubmenu.vue'
 export {
     HButton,
@@ -34,5 +38,7 @@ export {
     HMenu,
     HMenuButton,
     HMenuDivider,
+    HNavigationBar,
+    HNavigationButton,
     HSubmenu
 }

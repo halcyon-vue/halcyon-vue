@@ -225,7 +225,8 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
         ...[8, 12].map(o => `--halcyon-on-surface-o${o}: ${scheme.onSurface}0${o.toString(16)};`),
         `--halcyon-on-surface-o16: ${scheme.onSurface}29;`,
         `--halcyon-on-surface-o38: ${scheme.onSurface}61;`,
-        '--halcyon-modal-z: 50;'
+        `--halcyon-on-surface-variant-o16: ${scheme.onSurfaceVariant}29;`,
+        `--halcyon-on-surface-variant-o38: ${scheme.onSurfaceVariant}61;`
     ].join('\n')
 
     const schemeVars = Object.entries(scheme)
@@ -278,6 +279,8 @@ export const Halcyon = <Theme extends HalcyonTheme>(options: HalcyonPluginOption
         if (id === baseRMID) {
             return baseTheme
         } else if (id === themeRMID) {
+            const common = ':root { --halcyon-modal-z: 50; }'
+
             const lightTheme = `:root {\n${themeToVars(theme.schemes.light, theme.palettes, 'light')}\n}`
 
             const darkVars = themeToVars(theme.schemes.dark, theme.palettes, 'dark')
@@ -293,7 +296,7 @@ export const Halcyon = <Theme extends HalcyonTheme>(options: HalcyonPluginOption
                 darkTheme = `@media (prefers-color-scheme: dark) {\n:root {\n${darkVars}\n}\n}`
             }
 
-            return lightTheme + '\n' + darkTheme 
+            return common + '\n' + lightTheme + '\n' + darkTheme 
         }
         },
     })

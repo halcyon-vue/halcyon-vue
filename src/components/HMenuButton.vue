@@ -1,5 +1,6 @@
 <!-- eslint-disable func-call-spacing -->
 <script setup lang="ts">
+import { navButtonComponent } from '../common'
 import { MenuItem } from '@headlessui/vue'
 import MenuRight from '~icons/mdi/menu-right'
 
@@ -12,19 +13,6 @@ const props = defineProps<{
     disabled?: boolean
     to?: string
 }>()
-
-const getComponentKind = (): string => {
-    if (props.isLink) {
-        if (props.useRouterLink) {
-            return 'router-link'
-        } else {
-            return 'a'
-        }
-    } else {
-        return 'button'
-    }
-}
-
 const handleClick = (e: Event, close: () => any) => {
     if(props.isLink) return
     e.preventDefault()
@@ -46,7 +34,7 @@ const handleClick = (e: Event, close: () => any) => {
         <component
             class="menu-item"
             :class="{ active, disabled }"
-            :is="getComponentKind()"
+            :is="navButtonComponent(isLink, useRouterLink)"
             @click="e => handleClick(e, close)"
             :to="to"
             :href="to"

@@ -50,6 +50,7 @@ export default defineConfig({
           { text: 'Text field', link: '/components/text-field' },
           { text: 'Dialog', link: '/components/dialog' },
           { text: 'Menu', link: '/components/menu' },
+          { text: 'Navigation bar', link: '/components/navigation-bar' },
           { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
         ]
       }
