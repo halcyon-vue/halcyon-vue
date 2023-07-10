@@ -1,13 +1,8 @@
 <script setup lang="ts">
+import { useHideOnScroll } from '../common'
 import { useScroll } from '@vueuse/core'
 import { ref, watch, toRefs, useSlots } from 'vue';
 import HFloatingActionButton from './HFloatingActionButton.vue'
-const scroll = useScroll(
-    document,
-    { throttle: 300, eventListenerOptions: true }
-)
-
-const { top: up, bottom: down } = toRefs(scroll.directions)
 
 defineProps<{
     fabLabel: string
@@ -20,13 +15,14 @@ const emit = defineEmits<{
 const show = ref(true)
 const showIcons = ref(true)
 
-watch([up, down], ([up, down]) => {
-    if (up) {
+useHideOnScroll({
+    onUp: () => {
         show.value = true
         setTimeout(() => {
             showIcons.value = show.value
         }, 50)
-    } else if (down) {
+    },
+    onDown: () => {
         show.value = false
         showIcons.value = false
     }
