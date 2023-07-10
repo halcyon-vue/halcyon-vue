@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
+    content?: string
     label: string
     useRouterLink?: boolean
     to?: string
@@ -13,10 +14,6 @@ const handleClick = () => {
     if(props.isActive) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-}
-
-const formatBadgeCount = () => {
-
 }
 </script>
 
@@ -43,7 +40,7 @@ const formatBadgeCount = () => {
                 {{ badgeCount ? (badgeCount > 999 ? '999+' : badgeCount) : ' ' }}
             </div>
         </div>
-        <span v-if="!hideLabel">{{ label }}</span>
+        <span v-if="!hideLabel">{{ content || label }}</span>
     </component>
 </template>
 

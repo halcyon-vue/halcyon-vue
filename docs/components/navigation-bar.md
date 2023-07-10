@@ -147,8 +147,11 @@ Navigation bars let people switch between UI views on smaller devices.
 
 ```ts
 {
-    // The label to display.
+    // The label for this button. Should be descriptive - is used for the
+    // `aria-label` attribute.
     label: string
+    // The content to display, if different from the label.
+    content?: string
     // Whether this link should use a `router-link`.
     useRouterLink?: boolean
     // The location to link to.
