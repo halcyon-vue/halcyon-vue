@@ -26,6 +26,7 @@ const handleClick = () => {
         :href="to"
         :to="to"
         @click="handleClick"
+        tabindex=0
     >
         <div class="state-layer-outer">
             <div class="state-layer-inner" aria-hidden>

@@ -15,13 +15,15 @@ const emit = defineEmits<{
 const show = ref(true)
 const showIcons = ref(true)
 
+const onUp = () => {
+    show.value = true
+    setTimeout(() => {
+        showIcons.value = show.value
+    }, 50)
+}
+
 useHideOnScroll({
-    onUp: () => {
-        show.value = true
-        setTimeout(() => {
-            showIcons.value = show.value
-        }, 50)
-    },
+    onUp,
     onDown: () => {
         show.value = false
         showIcons.value = false
@@ -38,7 +40,7 @@ const n = Object.keys(useSlots())
 <template>
     <Teleport to="body">
         <Transition name="bottom-app-bar" appear>
-            <div class="bottom-app-bar" v-if="show">
+            <div class="bottom-app-bar" :class="{'off-screen': !show}" @focusin="onUp">
                 <TransitionGroup name="icons" tag="ul" class="icons-container" :style="{ '--total': n }" appear>
                     <li v-for="i in n" :key="i" :style="{ '--i': i }" v-if="showIcons">
                         <slot :name="`icon-${i}`" />
@@ -70,6 +72,8 @@ const n = Object.keys(useSlots())
     align-items: center;
     justify-content: space-between;
 
+    transition: transform util.$duration-short-4 util.$te-standard;
+
     &-fab {
         transition-property: box-shadow, transform, background-color, color;
         transition-duration: util.$duration-short-4;
@@ -84,6 +88,10 @@ const n = Object.keys(useSlots())
             transform: translateY(4px);
         }
     }
+
+    &.off-screen {
+        transform: translateY(100%);
+    }
 }
 
 .icons-container {
@@ -92,33 +100,14 @@ const n = Object.keys(useSlots())
     flex-direction: row;
 }
 
-.bottom-app-bar-enter-active,
-.bottom-app-bar-leave-active {
-    transition: transform util.$duration-short-4 util.$te-standard;
-}
-
-.bottom-app-bar-enter-from,
-.bottom-app-bar-leave-to {
-    transform: translateY(100%);
-}
 
 .icons {
+    transition-property: opacity, transform;
+    transition-duration: util.$duration-short-3;
+    transition-timing-function: util.$te-standard-decelerate;
+    transition-delay: calc(50ms * var(--i));
 
-    &-leave-active,
-    &-enter-active {
-        transition-property: opacity, transform;
-        transition-duration: util.$duration-short-3;
-        transition-timing-function: util.$te-standard-decelerate;
-        transition-delay: calc(50ms * var(--i));
-    }
-
-    // &-enter-active {
-    //     transition: opacity .5s linear, transform .5s cubic-bezier(.2, .5, .1, 1);
-    //     transition-delay: calc(50ms * var(--i));
-    // }
-
-    &-enter-from,
-    &-leave-to {
+    .off-screen & {
         opacity: 0;
         transform: translateY(5em);
     }

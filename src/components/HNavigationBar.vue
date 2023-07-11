@@ -12,12 +12,14 @@ useHideOnScroll({
     onUp: () => { show.value = true }, 
     onDown: () => { show.value = false }
 })
+
+
 </script>
 
 <template>
     <Teleport to="body">
         <Transition name="nav-bar" appear>
-            <nav v-if="hideOnScroll ? show : true">
+            <nav :class="{'off-screen': hideOnScroll ? !show : false}" @focusin="show = true">
                 <slot/>
             </nav>
         </Transition>
@@ -44,15 +46,11 @@ nav {
     right: 0;
 
     z-index: 20;
-}
 
-.nav-bar-enter-active,
-.nav-bar-leave-active {
     transition: transform util.$duration-short-4 util.$te-standard;
 }
 
-.nav-bar-enter-from,
-.nav-bar-leave-to {
+.off-screen {
     transform: translateY(100%);
 }
 </style>
