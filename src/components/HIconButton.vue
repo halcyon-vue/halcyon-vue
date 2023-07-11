@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
-  kind: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
+  kind?: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
   // The label to use for accessibility.
   label: string,
   toggleable?: boolean,
@@ -42,10 +42,10 @@ const toggle = () => {
 </script>
 
 <template>
-  <component :is="as || 'button'" :aria-label="label" :disabled="disabled" class="h-icon-button" :class="{
+  <component :is="as || 'button'" :aria-label="label" :disabled="disabled" class="h-icon-button" :class="{      
     selected,
     toggleable: _toggleable,
-    [kind]: true,
+    [kind || 'standard']: true,
   }" @click="toggle" :role="role" :to="as === 'router-link' ? to : undefined" :href="as === 'a' ? to : undefined">
     <span class="state-layer">
       <slot v-if="!toggleable" />
