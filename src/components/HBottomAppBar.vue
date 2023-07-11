@@ -41,11 +41,11 @@ const n = Object.keys(useSlots())
     <Teleport to="body">
         <Transition name="bottom-app-bar" appear>
             <div class="bottom-app-bar" :class="{'off-screen': !show}" @focusin="onUp">
-                <TransitionGroup name="icons" tag="ul" class="icons-container" :style="{ '--total': n }" appear>
-                    <li v-for="i in n" :key="i" :style="{ '--i': i }" v-if="showIcons">
+                <ul class="icons-container" :style="{ '--total': n }">
+                    <li class="icons" v-for="i in n" :key="i" :style="{ '--i': i }">
                         <slot :name="`icon-${i}`" />
                     </li>
-                </TransitionGroup>
+                </ul>
             </div>
         </Transition>
         <h-floating-action-button class="bottom-app-bar-fab" :class="{ 'bar-showing': show }" color="secondary"
