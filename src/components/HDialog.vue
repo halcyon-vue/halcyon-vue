@@ -11,6 +11,7 @@ import HButton from './HButton.vue'
 import HIconButton from './HIconButton.vue'
 import CloseButton from '~icons/mdi/close'
 import { vIntersectionObserver } from '@vueuse/components'
+import { pinnedHandler } from '../common'
 
 type Action = () => (any | Promise<any>)
 
@@ -52,12 +53,6 @@ const handleAction = (action: Action) => {
     close()
   }
 }
-
-type IntersectionObserverCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => void
-
-const onIntersectionObserver: IntersectionObserverCallback = (entries) => {
-  entries[0].target.classList.toggle('is-pinned', entries[0].intersectionRatio < 1)
-}
 </script>
 
 <template>
@@ -70,7 +65,7 @@ const onIntersectionObserver: IntersectionObserverCallback = (entries) => {
       <TransitionChild as="template" enter="panel-active" enter-from="panel-fullscreen-from" enter-to="panel-to"
         leave="panel-active" leave-from="panel-to" leave-to="panel-fullscreen-from" v-if="fullscreen">
         <DialogPanel class="fullscreen-panel">
-          <header v-intersection-observer="[onIntersectionObserver, { threshold: [1] }]">
+          <header v-intersection-observer="pinnedHandler">
             <h-icon-button kind="standard" label="Close" @click="close" class="fs-icon">
               <close-button />
             </h-icon-button>
@@ -135,7 +130,7 @@ const onIntersectionObserver: IntersectionObserverCallback = (entries) => {
 }
 
 .panel {
-  background-color: var(--halcyon-surface-container-high);
+  background-color: var(--halcyon-surface-container);
   color: var(--halcyon-on-surface);
   max-width: min(560px, calc(100vw - (112px)));
   max-height: calc(100vh - 112px);

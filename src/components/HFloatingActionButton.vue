@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps<{
+  label: string,
   kind?: 'standard' | 'small' | 'large' | 'extended'
   color?: 'surface' | 'secondary' | 'tertiary'
 
@@ -11,8 +12,8 @@ defineProps<{
 </script>
 
 <template>
-  <button class="h-fab" :class="[kind ?? 'standard', color ?? 'surface', { shadow: !noShadow }]">
-    <slot />
+  <button class="h-fab" :class="[kind ?? 'standard', color ?? 'surface', { shadow: !noShadow }]" :aria-label="label">
+    <slot aria-hidden />
     <span v-if="kind === 'extended'">
       {{ content }}
     </span>

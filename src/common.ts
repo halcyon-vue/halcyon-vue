@@ -1,5 +1,5 @@
-import { useScroll } from '@vueuse/core'
-import { toRefs, watch } from 'vue'
+import { MaybeComputedElementRef, tryOnMounted, unrefElement, useEventListener, useResizeObserver, useScroll } from '@vueuse/core'
+import { toRefs, watch, ref } from 'vue'
 
 export const navButtonComponent = /* @__PURE__ */ (isLink: boolean, useRouterLink: boolean) => {
     if (isLink) {
@@ -26,3 +26,13 @@ export const useHideOnScroll = /* @__PURE__ */ ({ onUp, onDown }: HideOnScrollOp
         if (down) onDown()
     })
 }
+
+const onIntersectionObserver = (entries: IntersectionObserverEntry[]) => {
+  entries[0].target.classList.toggle('is-pinned', entries[0].intersectionRatio < 1)
+}
+
+const ioOpts = { threshold: [1] }
+
+export const pinnedHandler: [((entries: IntersectionObserverEntry[]) => void), {
+    threshold: number[];
+}] = [ onIntersectionObserver, ioOpts ]

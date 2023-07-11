@@ -56,13 +56,13 @@ const d = ref('')
             <template #content>
                 <div class="accounts">
                     <div>
-                        <img src="../images/albedo.png"><span>albedo@aleikats.example</span>
+                        <img src="../images/albedo.png" width="40" height="40"><span>albedo@aleikats.example</span>
                     </div>
                     <div>
-                        <img src="../images/sucrose.png"><span>sucrose@aleikats.example</span>
+                        <img src="../images/sucrose.png" width="40" height="40"><span>sucrose@aleikats.example</span>
                     </div>
                     <div>
-                        <img src="../images/klee.png"><span>klee@aleikats.example</span>
+                        <img src="../images/klee.png" width="40" height="40"><span>klee@aleikats.example</span>
                     </div>
                 </div>
             </template>
@@ -105,13 +105,13 @@ const d = ref('')
     <template #content>
         <div class="accounts">
             <div>
-                <img src="../images/albedo.png"><span>albedo@aleikats.example</span>
+                <img src="../images/albedo.png" width="40" height="40"><span>albedo@aleikats.example</span>
             </div>
             <div>
-                <img src="../images/sucrose.png"><span>sucrose@aleikats.example</span>
+                <img src="../images/sucrose.png" width="40" height="40"><span>sucrose@aleikats.example</span>
             </div>
             <div>
-                <img src="../images/klee.png"><span>klee@aleikats.example</span>
+                <img src="../images/klee.png" width="40" height="40"><span>klee@aleikats.example</span>
             </div>
         </div>
     </template>

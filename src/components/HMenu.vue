@@ -1,13 +1,28 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
+import { useWindowSize } from '@vueuse/core'
+import { Ref, computed, ref, watch } from 'vue';
 
-
-defineProps<{
+const props = defineProps<{
   scrollable?: boolean
 
   _isSubmenu?: boolean
   _open?: boolean
 }>()
+
+const { width } = useWindowSize()
+
+const updateSide = (el: HTMLElement) => {
+  const { right } = el.getBoundingClientRect()
+  el.classList.toggle('open-left', right > width.value)
+}
+
+const vWatchSize = {
+  mounted: (el) => {
+    updateSide(el)
+  },
+}
+
 </script>
 
 <template>
@@ -16,14 +31,17 @@ defineProps<{
       <slot name="button" />
     </MenuButton>
     <Transition name="menu">
+
       <MenuItems
         as="div"
         class="menu-items"
         :class="{ scrollable, submenu: _isSubmenu }"
         :static="_isSubmenu"
         v-if="_isSubmenu ? _open : true"
+        ref="menuItems"
+        v-watch-size
       >
-        <slot name="content" />
+        <slot name="content" ref="menuItems" />
       </MenuItems>
     </Transition>
   </Menu>
@@ -64,10 +82,17 @@ defineProps<{
   top: 0px;
 }
 
+.open-left {
+  right: 0;
+}
+
 .menu-enter-active,
 .menu-leave-active {
   transition: all util.$duration-short-2 util.$te-standard;
   transform-origin: top left;
+  &.open-left {
+    transform-origin: top right;
+  }
 }
 
 .menu-enter-from,
