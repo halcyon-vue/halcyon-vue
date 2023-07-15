@@ -51,6 +51,8 @@ export default defineConfig({
           { text: 'Dialog', link: '/components/dialog' },
           { text: 'Menu', link: '/components/menu' },
           { text: 'Navigation bar', link: '/components/navigation-bar' },
+          { text: 'Navigation drawer', link: '/components/navigation-drawer' },
+          
           { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
           { text: 'Top app bar', link: '/components/top-app-bar' },
         ]
