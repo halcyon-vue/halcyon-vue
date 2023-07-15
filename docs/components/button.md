@@ -92,7 +92,7 @@ A common button, ideal for your app's most basic actions.
 ## Props
 
 ```ts
-{
+defineProps<{
     // The kind of button to render.
     // See the above preview for how each renders.
     kind: 'elevated' | 'filled' | 'filled-tonal' | 'outline' | 'text',
@@ -110,7 +110,7 @@ A common button, ideal for your app's most basic actions.
     // See the `Pitfalls` section of the documentation.
     addEmptyPadding?: boolean
     removeEmptyPadding?: boolean
-}
+}>)
 ```
 
 ## Slots

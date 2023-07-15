@@ -92,7 +92,7 @@ Icon buttons help people take supplementary actions with a single tap.
 ## Props
 
 ```ts
-{
+defineProps<{
     // The kind of button to render.
     // See the above preview for how each one renders.
     kind: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
@@ -110,7 +110,7 @@ Icon buttons help people take supplementary actions with a single tap.
     checked?: boolean
 
     modelValue?: boolean
-}
+}>()
 ```
 
 ## Slots

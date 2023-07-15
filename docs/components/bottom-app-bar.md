@@ -52,10 +52,10 @@ screens. [See the Material 3 documentation for this component][m3-bab].
 ## Props
 
 ```ts
-{
+defineProps<{
     // Label for the floating action button.
     fabLabel: string
-}
+}>()
 ```
 
 ## Slots

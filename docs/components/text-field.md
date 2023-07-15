@@ -141,7 +141,7 @@ and dialogs. [See the Material 3 documentation on this component][m3-text-field]
 ## Props
 
 ```ts
-{
+defineProps<{
   // The name of the input. Must be unique on the page.
   name: string
 
@@ -210,7 +210,7 @@ and dialogs. [See the Material 3 documentation on this component][m3-text-field]
   autocomplete?: string
 
   modelValue?: string
-}
+}>()
 ```
 
 1. [MDN docs on `input`][mdn-input]

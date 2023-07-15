@@ -126,7 +126,7 @@ Dialogs provide important prompts in a user flow.
 ## Props
 
 ```ts
-{
+defineProps<{
   // The title of the dialog.
   title: string,
   // The description to show. Optional, but if your dialog has text in the
@@ -145,7 +145,7 @@ Dialogs provide important prompts in a user flow.
   }[]
   // Whether or not the modal is open. You can use `v-model:open` to bind this.
   open?: boolean;
-}
+}>()
 ```
 
 ## Slots

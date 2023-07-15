@@ -10,15 +10,16 @@ Top app bars contain a title and actions related to the current screen.
 ## Props
 
 ```ts
-{
+defineProps<{
     // The kind of top app bar to render.
     kind: 'center' | 'small' | 'medium' | 'large' | 'compressing'
     // The title to display in the top app bar.
     title: string
     // Whether to hide the top app bar when scrolling down.
     hideOnScroll?: boolean
-}
+}>()
 ```
+
 ## Slots
 
 ### `navigation-icon`

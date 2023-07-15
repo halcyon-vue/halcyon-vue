@@ -81,22 +81,21 @@ Keyboard navigation currently **DOES NOT** function with submenus. You should
 avoid them if so possible, especially for critical functionality.
 :::
 
-
 ## Props
 
 ### HMenu
 
 ```ts
-{
+defineProps<{
     // Whether this should be a scrollable menu or not.
     scrollable?: boolean
-}
+}>()
 ```
 
 ### HMenuButton
 
 ```ts
-{
+defineProps<{
     // The text to be displayed.
     label: string
     // If the button isn't a link, will be run on click, before closing.
@@ -109,7 +108,7 @@ avoid them if so possible, especially for critical functionality.
     useRouterLink?: boolean
     // Whether this menu is `disabled`.
     disabled?: boolean
-}
+}>()
 ```
 
 ### HMenuDivider

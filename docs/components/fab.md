@@ -132,7 +132,7 @@ See the Material 3 documentation for this component: [Standard], [Extended].
 ## Props
 
 ```ts
-{
+defineProps<{
   // The kind of FAB to render. Defaults to 'standard'.
   kind?: 'standard' | 'small' | 'large' | 'extended'
   // The color of FAB to render. Defaults to 'surface'.
@@ -143,7 +143,7 @@ See the Material 3 documentation for this component: [Standard], [Extended].
 
   // Content to use when `kind` is `extended`.
   content?: string
-}
+}>()
 ```
 
 ## Slots

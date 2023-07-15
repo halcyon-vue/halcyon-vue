@@ -137,16 +137,16 @@ Navigation bars let people switch between UI views on smaller devices.
 ### `HNavigationBar`
 
 ```ts
-{
+defineProps<{
     // If this navigation bar should be hidden when the user scrolls down.
     hideOnScroll: boolean
-}
+}>()
 ```
 
 ### `HNavigationButton`
 
 ```ts
-{
+defineProps<{
     // The label for this button. Should be descriptive - is used for the
     // `aria-label` attribute.
     label: string
@@ -164,7 +164,7 @@ Navigation bars let people switch between UI views on smaller devices.
     showBadge?: boolean
     // The count to show on the notification badge, if any.
     badgeCount?: number
-}
+}>()
 ```
 
 ## Slots

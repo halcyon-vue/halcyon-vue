@@ -18,8 +18,6 @@ const options = {
 
 </script>
 
-Navigation drawers let people switch between UI views on larger devices.
-
 <preview :options="options" v-slot="{ state }">
     <h-icon-button label="Open menu" @click="open = true">
         <menu-icon />
@@ -28,33 +26,26 @@ Navigation drawers let people switch between UI views on larger devices.
     </h-navigation-drawer>
 </preview>
 
-Icon buttons help people take supplementary actions with a single tap.
-[See the Material 3 documentation on this component][m3-icon-button].
+Navigation drawers let people switch between UI views on larger devices.
+[See the Material 3 documentation on this component][m3-nav-drawer].
 
-[m3-icon-button]: https://m3.material.io/components/icon-buttons/overview
+[m3-nav-drawer]: https://m3.material.io/components/navigation-drawer/overview
 
 ## Props
 
 ```ts
-{
-    // The kind of button to render.
-    // See the above preview for how each one renders.
-    kind: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
-    // The label to use for accessibility.
-    label: string,
-    // Whether this is a toggleable icon button.
-    toggleable?: boolean,
-    // Whether this button is disabled.
-    disabled?: boolean,
-    // Which element to render the button as.
-    as?: 'button' | 'a' | 'router-link',
-    // If the button is a link, where to link to.
-    to?: string
-    // What the toggle state defaults to.
-    checked?: boolean
-
-    modelValue?: boolean
-}
+defineProps<{
+    // The title of this navigation drawer.
+    title?: string
+    // Whether the navigation drawer is currently open.
+    // You should bind this with `v-model:open`.
+    open?: boolean
+    // Whether the navigation drawer is currently "static"; i.e. should
+    // stay open.
+    // You should add a class to the body in order to offset it
+    // when this is true.
+    static?: boolean
+}>()
 ```
 
 ## Slots

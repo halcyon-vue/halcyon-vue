@@ -43,14 +43,14 @@ A switch for single-option items.
 ## Props
 
 ```ts
-{
+defineProps<{
   // The ID to use on the input.
   id: string
   // Whether the switch is disabled or not.
   disabled?: boolean
   // Allows you to use this as though it were a regular `<input type="checkbox" />`
   modelValue?: boolean
-}
+}>()
 ```
 
 ## Slots
