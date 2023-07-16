@@ -68,6 +68,13 @@ const badgeText = computed(() => {
     cursor: pointer;
 }
 
+.label-hidden:not(.in-drawer) .state-layer-outer,
+.label-hidden:not(.in-drawer) .state-layer-inner {
+    height: 56px;
+    width: 56px;
+    border-radius: 100%;
+}
+
 .in-drawer .state-layer-outer,
 .in-drawer .state-layer-inner {
     width: 336px;
