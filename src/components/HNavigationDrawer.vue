@@ -37,9 +37,7 @@ provide('in drawer', true);
 
 <template>
     <Teleport to="body" v-if="static">
-        <nav>
-            <h1>{{ title }}</h1>
-        </nav>
+        <nav><slot /></nav>
     </Teleport>
     <TransitionRoot as="template" appear :show="open" v-else>
         <Dialog @close="close">
@@ -72,15 +70,15 @@ nav {
 
     padding: 0 28px;
 
-    &:deep(h1, h2) {
+    &:deep(h1), &:deep(h2) {
         color: var(--halcyon-on-surface-variant);
         @include util.title-small;
-        margin: 8px 0;
+        margin: 24px 12px 24px 10px;
     }
 
     &:deep(hr) {
         color: var(--halcyon-outline-variant);
-        margin: 8px 0;
+        margin: 8px;
         border-width: 1px;
     }
 }

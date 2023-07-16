@@ -71,6 +71,56 @@ const options = {
     </h-navigation-drawer>
 </preview>
 
+::: details Source code
+
+```html
+<h-icon-button label="Open menu" @click="open = true">
+    <menu-icon />
+</h-icon-button>
+<h-navigation-drawer v-model:open="open" :static="state.static">
+    <h1>Mail</h1>
+    <h-navigation-button is-active label="Mail" show-badge :badge-count=24>
+        <template #active>
+            <inbox-icon />
+        </template>
+    </h-navigation-button>
+    <h-navigation-button show-badge label="Outbox">
+        <template #inactive>
+            <outbox-icon />
+        </template>
+    </h-navigation-button>
+    <h-navigation-button label="Favorites">
+        <template #inactive>
+            <heart-icon />
+        </template>
+    </h-navigation-button>
+    <h-navigation-button label="Trash">
+        <template #inactive>
+            <trash-icon />
+        </template>
+    </h-navigation-button>
+    <h-divider />
+    <h2>Labels</h2>
+    <h-navigation-button label="Label">
+        <template #inactive>
+            <circle-icon />
+        </template>
+    </h-navigation-button>
+    <h-navigation-button label="Label">
+        <template #inactive>
+            <triangle-icon />
+        </template>
+    </h-navigation-button>
+    <h-navigation-button label="Label">
+        <template #inactive>
+            <square-icon />
+        </template>
+    </h-navigation-button>
+</h-navigation-drawer>
+```
+
+:::
+
 Navigation drawers let people switch between UI views on larger devices.
 [See the Material 3 documentation on this component][m3-nav-drawer].
 
@@ -96,4 +146,5 @@ defineProps<{
 ### Default
 
 The default slot is used for the drawer content. This should be made of
-[navigation icons](navigation-bar#hnavigationbutton).
+[navigation icons](navigation-bar#hnavigationbutton) and elements like 
+`h1`, `h2`, and `hr`.
