@@ -31,6 +31,8 @@ import HTopAppBar from './components/HTopAppBar.vue'
 // @ts-ignore
 import HNavigationDrawer from './components/HNavigationDrawer.vue'
 // @ts-ignore
+import HNavigationRail from './components/HNavigationRail.vue'
+// @ts-ignore
 import HDivider from './components/HDivider.vue'
 export {
     HButton,
@@ -47,6 +49,7 @@ export {
     HNavigationBar,
     HNavigationButton,
     HNavigationDrawer,
+    HNavigationRail,
     HSubmenu,
     HTopAppBar,
     HDivider
