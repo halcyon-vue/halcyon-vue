@@ -3,8 +3,15 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import Preview from '../Preview.vue'
-import { HNavigationDrawer, HIconButton } from '../../src/'
+import { HNavigationDrawer, HNavigationButton, HIconButton, HDivider } from '../../src/'
 import MenuIcon from '~icons/mdi/menu'
+import InboxIcon from '~icons/mdi/inbox'
+import OutboxIcon from '~icons/mdi/send-variant-outline'
+import HeartIcon from '~icons/mdi/heart-outline'
+import TrashIcon from '~icons/mdi/delete-outline'
+import CircleIcon from '~icons/mdi/checkbox-blank-circle-outline'
+import TriangleIcon from '~icons/mdi/triangle-outline'
+import SquareIcon from '~icons/mdi/crop-square'
 
 const open = ref(false)
 
@@ -22,7 +29,45 @@ const options = {
     <h-icon-button label="Open menu" @click="open = true">
         <menu-icon />
     </h-icon-button>
-    <h-navigation-drawer v-model:open="open" title="Mail" :static="state.static">
+    <h-navigation-drawer v-model:open="open" :static="state.static">
+        <h1>Mail</h1>
+        <h-navigation-button is-active label="Mail" show-badge :badge-count=24>
+            <template #active>
+                <inbox-icon />
+            </template>
+        </h-navigation-button>
+        <h-navigation-button show-badge label="Outbox">
+            <template #inactive>
+                <outbox-icon />
+            </template>
+        </h-navigation-button>
+        <h-navigation-button label="Favorites">
+            <template #inactive>
+                <heart-icon />
+            </template>
+        </h-navigation-button>
+        <h-navigation-button label="Trash">
+            <template #inactive>
+                <trash-icon />
+            </template>
+        </h-navigation-button>
+        <h-divider />
+        <h2>Labels</h2>
+        <h-navigation-button label="Label">
+            <template #inactive>
+                <circle-icon />
+            </template>
+        </h-navigation-button>
+        <h-navigation-button label="Label">
+            <template #inactive>
+                <triangle-icon />
+            </template>
+        </h-navigation-button>
+        <h-navigation-button label="Label">
+            <template #inactive>
+                <square-icon />
+            </template>
+        </h-navigation-button>
     </h-navigation-drawer>
 </preview>
 
@@ -35,8 +80,6 @@ Navigation drawers let people switch between UI views on larger devices.
 
 ```ts
 defineProps<{
-    // The title of this navigation drawer.
-    title?: string
     // Whether the navigation drawer is currently open.
     // You should bind this with `v-model:open`.
     open?: boolean
@@ -52,19 +95,5 @@ defineProps<{
 
 ### Default
 
-The default slot is used for the icon in non-toggleable buttons.
-
-### `unchecked`
-
-The `unchecked` slot is used for the icon in toggleable buttons when they are
-not checked.
-
-### `checked`
-
-The `checked` slot is used for the icon in toggleable buttons when they are
-checked.
-
-## Known issues
-
-1. The label does not appear as a tooltip.
-1. The `checked` prop seems to be somewhat inconsistent.
+The default slot is used for the drawer content. This should be made of
+[navigation icons](navigation-bar#hnavigationbutton).

@@ -175,6 +175,10 @@ No slots.
 
 ### `HNavigationButton`
 
-#### Default
+#### `active`
 
-The default slot is used for the icon.
+The `active` slot is used for the icon when the navigation button is active.
+
+#### `inactive`
+
+The `inactive` slot is used for the icon when the navigation button is inactive.

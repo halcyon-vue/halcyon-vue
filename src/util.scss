@@ -52,6 +52,10 @@
     font-weight: 500;
 }
 
+@mixin title-small {
+    @include label-large;
+}
+
 @mixin label-medium {
     font-size: 12px;
     line-height: 16px;
@@ -84,19 +88,19 @@
 }
 
 @mixin grade($amount) {
-    font-feature-settings: "grad" $amount;
+    font-feature-settings: "grad"$amount;
 }
 
 @mixin shadow-sm {
-    box-shadow: 0 2px 2px 0 var(--halcyon-shadow),0 3px 1px -2px var(--halcyon-shadow),0 1px 5px 0 var(--halcyon-shadow);
+    box-shadow: 0 2px 2px 0 var(--halcyon-shadow), 0 3px 1px -2px var(--halcyon-shadow), 0 1px 5px 0 var(--halcyon-shadow);
 }
 
 @mixin shadow-md {
-    box-shadow: 0 4px 5px 0 var(--halcyon-shadow),0 1px 10px 0 var(--halcyon-shadow),0 2px 4px -1px var(--halcyon-shadow);
+    box-shadow: 0 4px 5px 0 var(--halcyon-shadow), 0 1px 10px 0 var(--halcyon-shadow), 0 2px 4px -1px var(--halcyon-shadow);
 }
 
 @mixin shadow-lg {
-    box-shadow: 0 8px 10px 1px var(--halcyon-shadow),0 3px 14px 2px var(--halcyon-shadow),0 5px 5px -3px var(--halcyon-shadow);
+    box-shadow: 0 8px 10px 1px var(--halcyon-shadow), 0 3px 14px 2px var(--halcyon-shadow), 0 5px 5px -3px var(--halcyon-shadow);
 }
 
 $te-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
@@ -107,18 +111,18 @@ $te-emphasized: $te-standard; // according to spec, fsr
 $te-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
 $te-emphasized-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
 
-$duration-short-1:      50ms;
-$duration-short-2:      100ms;
-$duration-short-3:      150ms;
-$duration-short-4:      200ms;
-$duration-medium-1:     250ms;
-$duration-medium-2:     300ms;
-$duration-medium-3:     350ms;
-$duration-medium-4:     400ms;
-$duration-long-1:       450ms;
-$duration-long-2:       500ms;
-$duration-long-3:       550ms;
-$duration-long-4:       600ms;
+$duration-short-1: 50ms;
+$duration-short-2: 100ms;
+$duration-short-3: 150ms;
+$duration-short-4: 200ms;
+$duration-medium-1: 250ms;
+$duration-medium-2: 300ms;
+$duration-medium-3: 350ms;
+$duration-medium-4: 400ms;
+$duration-long-1: 450ms;
+$duration-long-2: 500ms;
+$duration-long-3: 550ms;
+$duration-long-4: 600ms;
 $duration-extra-long-1: 700ms;
 $duration-extra-long-2: 800ms;
 $duration-extra-long-3: 900ms;

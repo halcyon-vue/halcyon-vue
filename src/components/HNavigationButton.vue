@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed, inject } from 'vue';
+
 const props = defineProps<{
     content?: string
     label: string
@@ -11,37 +13,46 @@ const props = defineProps<{
 }>()
 
 const handleClick = () => {
-    if(props.isActive) {
+    if (props.isActive) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 }
+
+const inDrawer = inject('in drawer', false)
+
+const badgeText = computed(() => {
+    if (props.badgeCount) {
+        return props.badgeCount > 999 ? '999+' : props.badgeCount
+    } else {
+        return ' '
+    }
+})
 </script>
 
 <template>
-    <component
-        :is="useRouterLink ? 'router-link' : 'a'"
-        :aria-label="label"
-        class="navigation-button"
-        :class="{ active: isActive }"
-        :href="to"
-        :to="to"
-        @click="handleClick"
-        tabindex=0
-    >
-        <div class="state-layer-outer">
+    <component :is="useRouterLink ? 'router-link' : 'a'" :aria-label="label" class="navigation-button"
+        :class="{ active: isActive, 'in-drawer': inDrawer }" :href="to" :to="to" @click="handleClick" tabindex=0>
+        <div class="state-layer-outer" v-if="inDrawer">
+            <div class="state-layer-inner">
+                <slot name="active" v-if="isActive" />
+                <slot name="inactive" v-else />
+                <div v-if="showBadge && !badgeCount" class="badge"></div>
+                <span v-if="!hideLabel">{{ content || label }}</span>
+                <div v-if="showBadge && badgeCount" class="badge count">
+                    {{ badgeText }}
+                </div>
+            </div>
+        </div>
+        <div class="state-layer-outer" v-else>
             <div class="state-layer-inner" aria-hidden>
                 <slot name="active" v-if="isActive" />
                 <slot name="inactive" v-else />
             </div>
-            <div
-                v-if="showBadge"
-                :class="{ 'count': badgeCount }"
-                class="badge"
-            >
-                {{ badgeCount ? (badgeCount > 999 ? '999+' : badgeCount) : ' ' }}
+            <div v-if="showBadge" :class="{ 'count': badgeCount }" class="badge">
+                {{ badgeText }}
             </div>
         </div>
-        <span v-if="!hideLabel">{{ content || label }}</span>
+        <span v-if="!hideLabel && !inDrawer">{{ content || label }}</span>
     </component>
 </template>
 
@@ -57,7 +68,28 @@ const handleClick = () => {
     cursor: pointer;
 }
 
-.state-layer-outer, .state-layer-inner {
+.in-drawer .state-layer-outer,
+.in-drawer .state-layer-inner {
+    width: 336px;
+    height: 56px;
+    flex-direction: row;
+    justify-content: left;
+    border-radius: 28px;
+}
+
+.in-drawer span {
+    @include util.label-large;
+    padding-left: 12px;
+    flex: 1;
+    text-align: left;
+}
+
+.in-drawer .state-layer-inner {
+    padding: 0 24px;
+}
+
+.state-layer-outer,
+.state-layer-inner {
     height: 32px;
     width: 64px;
     border-radius: 16px;
@@ -85,6 +117,7 @@ const handleClick = () => {
     .navigation-button:hover & {
         background-color: var(--halcyon-on-surface-variant-o16);
     }
+
     .navigation-button:is(:focus, :active) & {
         background-color: var(--halcyon-on-surface-variant-o38);
     }
@@ -95,6 +128,7 @@ const handleClick = () => {
         .navigation-button:hover & {
             background-color: var(--halcyon-on-surface-o16);
         }
+
         .navigation-button:is(:focus, :active) & {
             background-color: var(--halcyon-on-surface-o38);
         }
@@ -114,6 +148,27 @@ span {
     .active & {
         color: var(--halcyon-on-surface);
     }
+}
+
+.in-drawer .badge {
+    left: -6px;
+    top: -8px;
+}
+
+.in-drawer .badge:not(.count)~span {
+    position: relative;
+    left: -6px;
+}
+
+.in-drawer .badge.count {
+    position: static;
+    background-color: transparent;
+    color: var(--halcyon-on-surface-variant);
+    @include util.label-medium;
+    width: auto;
+    height: auto;
+    max-width: max-content;
+    padding: 0;
 }
 
 .badge {
