@@ -26,7 +26,7 @@ const options = {
 </script>
 
 <preview :options="options" v-slot="{ state }">
-    <h-icon-button label="Open menu" @click="open = true">
+    <h-icon-button label="Open menu" @click="open = true" :disabled="state.static">
         <menu-icon />
     </h-icon-button>
     <h-navigation-drawer v-model:open="open" :static="state.static">
@@ -74,7 +74,7 @@ const options = {
 ::: details Source code
 
 ```html
-<h-icon-button label="Open menu" @click="open = true">
+<h-icon-button label="Open menu" @click="open = true" :disabled="state.static">
     <menu-icon />
 </h-icon-button>
 <h-navigation-drawer v-model:open="open" :static="state.static">
