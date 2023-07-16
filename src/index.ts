@@ -34,6 +34,8 @@ import HNavigationDrawer from './components/HNavigationDrawer.vue'
 import HNavigationRail from './components/HNavigationRail.vue'
 // @ts-ignore
 import HDivider from './components/HDivider.vue'
+// @ts-ignore
+import HCheckbox from './components/HCheckbox.vue'
 export {
     HButton,
     HBottomAppBar,
@@ -52,5 +54,6 @@ export {
     HNavigationRail,
     HSubmenu,
     HTopAppBar,
-    HDivider
+    HDivider,
+    HCheckbox
 }
