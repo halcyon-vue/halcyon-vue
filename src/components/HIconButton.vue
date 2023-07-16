@@ -46,7 +46,7 @@ const toggle = () => {
     selected,
     toggleable: _toggleable,
     [kind || 'standard']: true,
-  }" @click="toggle" :role="role" :to="as === 'router-link' ? to : undefined" :href="as === 'a' ? to : undefined">
+  }" @click="toggle" :role="role" :to="as === 'router-link' ? to : undefined" :href="as === 'a' ? to : undefined" :title="label">
     <span class="state-layer">
       <slot v-if="!toggleable" />
       <slot name="selected" v-if="toggleable && selected" />

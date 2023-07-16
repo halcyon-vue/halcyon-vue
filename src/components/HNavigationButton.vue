@@ -31,7 +31,7 @@ const badgeText = computed(() => {
 
 <template>
     <component :is="useRouterLink ? 'router-link' : 'a'" :aria-label="label" class="navigation-button"
-        :class="{ active: isActive, 'in-drawer': inDrawer }" :href="to" :to="to" @click="handleClick" tabindex=0>
+        :class="{ active: isActive, 'in-drawer': inDrawer, 'label-hidden': hideLabel }" :href="to" :to="to" @click="handleClick" tabindex=0 :title="label">
         <div class="state-layer-outer" v-if="inDrawer">
             <div class="state-layer-inner">
                 <slot name="active" v-if="isActive" />
