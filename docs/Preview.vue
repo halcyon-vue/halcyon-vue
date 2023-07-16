@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { HCheckbox } from '../src'
 import { reactive, ref } from 'vue'
 import { nanoid } from 'nanoid'
 
@@ -54,8 +55,8 @@ const id = nanoid()
                         </select>
                     </div>
                     <div v-else-if="option.kind === 'bool'">
-                        <input type="checkbox" v-model="state[name]" :id="`option-${name}-${id}`">
                         <label :for="`option-${name}-${id}`">{{ option.label }}</label>
+                        <h-checkbox v-model="state[name]" :id="`option-${name}-${id}`" />
                     </div>
                 </section>
             </div>
@@ -67,6 +68,13 @@ const id = nanoid()
 h1 {
     font-size: 1rem;
     display: inline-flex;
+}
+.preview-options section > div {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
 }
 section.preview {
     font-family: "Roboto Flex", "Roboto", Roboto, "Noto Sans", system-ui,
@@ -135,6 +143,13 @@ header {
 
 section + section {
     margin-top: 8px;
+}
+
+select {
+    padding: 0 0.5rem;
+    font-family: inherit;
+    border-radius: 4px;
+    text-align: center;
 }
 </style>
 

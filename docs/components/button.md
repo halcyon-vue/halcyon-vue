@@ -47,7 +47,7 @@ const capitalizeFirst = s =>
 </script>
 
 <preview :options="previewOptions" v-slot="{ state }">
-    <div class="preview-row">
+    <div class="preview-column">
         <h-button
             :kind="state.kind"
             :content="capitalizeFirst(state.kind) + ' button'"
