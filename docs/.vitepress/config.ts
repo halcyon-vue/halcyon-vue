@@ -52,7 +52,7 @@ export default defineConfig({
           { text: 'Menu', link: '/components/menu' },
           { text: 'Navigation bar', link: '/components/navigation-bar' },
           { text: 'Navigation drawer', link: '/components/navigation-drawer' },
-          
+          { text: 'Navigation rail', link: '/components/navigation-rail' },
           { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
           { text: 'Top app bar', link: '/components/top-app-bar' },
         ]
