@@ -6,6 +6,7 @@ const props = defineProps<{
     indeterminate?: boolean
     disabled?: boolean
     error?: boolean
+    id: string
 }>()
 
 const emit = defineEmits<{
@@ -32,6 +33,7 @@ watch(() => props.indeterminate, () => {
         @click="toggle"
     >
         <input
+            :id="id"
             type="checkbox"
             :checked="modelValue"
             :disabled="disabled"

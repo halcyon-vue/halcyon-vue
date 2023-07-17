@@ -44,6 +44,8 @@ or off. [See the Material 3 documentation for this component][m3-checkbox].
 
 ```ts
 defineProps<{
+    // The ID for the checkbox.
+    id: string
     // Whether the checkbox is checked.
     modelValue?: boolean
     // Whether the checkbox is in an indeterminate state.
