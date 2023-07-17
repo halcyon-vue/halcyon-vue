@@ -2,59 +2,59 @@ import { Plugin } from 'vite'
 import defaultTheme from './default-theme.json'
 import baseTheme from './base'
 import reset from './reset' // i would have just used this straight from
-                            // the package, but it refuses to import correctly
-                            // for some reason
+// the package, but it refuses to import correctly
+// for some reason
 
 export type ColorScheme = {
     primary: string,
-  onPrimary: string,
-  primaryContainer: string,
-  onPrimaryContainer: string,
-  primaryFixed: string,
-  onPrimaryFixed: string,
-  primaryFixedDim: string,
-  onPrimaryFixedVariant: string,
-  secondary: string,
-  onSecondary: string,
-  secondaryContainer: string,
-  onSecondaryContainer: string,
-  secondaryFixed: string,
-  onSecondaryFixed: string,
-  secondaryFixedDim: string,
-  onSecondaryFixedVariant: string,
-  tertiary: string,
-  onTertiary: string,
-  tertiaryContainer: string,
-  onTertiaryContainer: string,
-  tertiaryFixed: string,
-  onTertiaryFixed: string,
-  tertiaryFixedDim: string,
-  onTertiaryFixedVariant: string,
-  error: string,
-  errorContainer: string,
-  onError: string,
-  onErrorContainer: string,
-  background: string,
-  onBackground: string,
-  outline: string,
-  inverseOnSurface: string,
-  inverseSurface: string,
-  inversePrimary: string,
-  shadow: string,
-  surfaceTint: string,
-  outlineVariant: string,
-  scrim: string,
-  surface: string,
-  onSurface: string,
-  surfaceVariant: string,
-  onSurfaceVariant: string,
-  surfaceContainerHighest: string,
-  surfaceContainerHigh: string,
-  surfaceContainer: string,
-  surfaceContainerLow: string,
-  surfaceContainerLowest: string,
-  surfaceDim: string,
-  surfaceBright: string
+    onPrimary: string,
+    primaryContainer: string,
+    onPrimaryContainer: string,
+    primaryFixed: string,
+    onPrimaryFixed: string,
+    primaryFixedDim: string,
+    onPrimaryFixedVariant: string,
+    secondary: string,
+    onSecondary: string,
+    secondaryContainer: string,
+    onSecondaryContainer: string,
+    secondaryFixed: string,
+    onSecondaryFixed: string,
+    secondaryFixedDim: string,
+    onSecondaryFixedVariant: string,
+    tertiary: string,
+    onTertiary: string,
+    tertiaryContainer: string,
+    onTertiaryContainer: string,
+    tertiaryFixed: string,
+    onTertiaryFixed: string,
+    tertiaryFixedDim: string,
+    onTertiaryFixedVariant: string,
+    error: string,
+    errorContainer: string,
+    onError: string,
+    onErrorContainer: string,
+    background: string,
+    onBackground: string,
+    outline: string,
+    inverseOnSurface: string,
+    inverseSurface: string,
+    inversePrimary: string,
+    shadow: string,
+    surfaceTint: string,
+    outlineVariant: string,
+    scrim: string,
+    surface: string,
+    onSurface: string,
+    surfaceVariant: string,
+    onSurfaceVariant: string,
+    surfaceContainerHighest: string,
+    surfaceContainerHigh: string,
+    surfaceContainer: string,
+    surfaceContainerLow: string,
+    surfaceContainerLowest: string,
+    surfaceDim: string,
+    surfaceBright: string
 }
 
 export type Palette = {
@@ -80,7 +80,7 @@ export type Palette = {
 export type Palettes = {
     primary: Palette,
     secondary: Palette,
-    tertiary: Palette, 
+    tertiary: Palette,
     error: Palette,
     neutral: Palette,
     neutralVariant: Palette
@@ -124,29 +124,29 @@ const kebab = (str) => str.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? 
 const hex = (d: string) => parseInt(d, 16)
 
 const color = (c: string, alpha: number) => [
-  hex(c.slice(1, 3)),
-  hex(c.slice(3, 5)),
-  hex(c.slice(5, 7)),
-  alpha,
+    hex(c.slice(1, 3)),
+    hex(c.slice(3, 5)),
+    hex(c.slice(5, 7)),
+    alpha,
 ]
 
 const component = (n: number) => Math.round(n).toString(16).padStart(2, '0')
 
 const mix = (color1: string, color2: string, weight: number) => {
-  const colorRGBA1 = color(color1, 255)
-  const colorRGBA2 = color(color2, (weight / 100) * 255)
+    const colorRGBA1 = color(color1, 255)
+    const colorRGBA2 = color(color2, (weight / 100) * 255)
 
-  const red =
-    (colorRGBA1[0] * (255 - colorRGBA2[3]) + colorRGBA2[0] * colorRGBA2[3]) /
-    255
-  const green =
-    (colorRGBA1[1] * (255 - colorRGBA2[3]) + colorRGBA2[1] * colorRGBA2[3]) /
-    255
-  const blue =
-    (colorRGBA1[2] * (255 - colorRGBA2[3]) + colorRGBA2[2] * colorRGBA2[3]) /
-    255
+    const red =
+        (colorRGBA1[0] * (255 - colorRGBA2[3]) + colorRGBA2[0] * colorRGBA2[3]) /
+        255
+    const green =
+        (colorRGBA1[1] * (255 - colorRGBA2[3]) + colorRGBA2[1] * colorRGBA2[3]) /
+        255
+    const blue =
+        (colorRGBA1[2] * (255 - colorRGBA2[3]) + colorRGBA2[2] * colorRGBA2[3]) /
+        255
 
-  return '#' + [red, green, blue].map(component).join('')
+    return '#' + [red, green, blue].map(component).join('')
 }
 
 const pt = (p: Palette, tones: string[]): string[] => tones.map(t => p[t])
@@ -156,9 +156,9 @@ const getPrimaryTones = (palette: Palette, kind: 'dark' | 'light') => {
     // im fucking BEGGING
     // this isn't accurate but it's the best i can do and it's probably fine for
     // most use cases
-    if(kind == 'dark') {
-        const elevation1 = mix(palette['80'], palette['70'],  20)
-        const elevation2 = mix(palette['80'], palette['70'],  40)
+    if (kind == 'dark') {
+        const elevation1 = mix(palette['80'], palette['70'], 20)
+        const elevation2 = mix(palette['80'], palette['70'], 40)
         return [elevation1, elevation2]
     } else {
         const elevation1 = mix(palette['40'], palette['50'], 20)
@@ -168,7 +168,7 @@ const getPrimaryTones = (palette: Palette, kind: 'dark' | 'light') => {
 }
 
 const getContainerTones = (palette: Palette, kind: 'dark' | 'light') => {
-    if(kind == 'dark') {
+    if (kind == 'dark') {
         const elevation1 = mix(palette['30'], palette['40'], 20)
         const elevation2 = mix(palette['30'], palette['40'], 40)
         return [elevation1, elevation2]
@@ -184,24 +184,24 @@ const stateLayerColors = (color: string, stateLayerColor: string) => {
         hover: mix(color, stateLayerColor, 8),
         focus: mix(color, stateLayerColor, 12),
         press: mix(color, stateLayerColor, 12),
-        drag:  mix(color, stateLayerColor, 16),
+        drag: mix(color, stateLayerColor, 16),
     }
 }
 
 const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'light') => {
     const paletteElevations = {
-        primary:   getPrimaryTones(palettes.primary,   kind),
+        primary: getPrimaryTones(palettes.primary, kind),
         secondary: getPrimaryTones(palettes.secondary, kind),
-        tertiary:  getPrimaryTones(palettes.tertiary,  kind),
+        tertiary: getPrimaryTones(palettes.tertiary, kind),
 
-        primaryContainer:   getContainerTones(palettes.primary,   kind),
+        primaryContainer: getContainerTones(palettes.primary, kind),
         secondaryContainer: getContainerTones(palettes.secondary, kind),
-        tertiaryContainer:  getContainerTones(palettes.tertiary,  kind),
+        tertiaryContainer: getContainerTones(palettes.tertiary, kind),
     }
 
     const elevationVars = Object.entries(paletteElevations)
-        .map(([name, elevations]) => 
-            elevations.map((e, i) => `--halcyon-${kebab(name)}-elevation-${i+1}: ${e};`).join('\n')
+        .map(([name, elevations]) =>
+            elevations.map((e, i) => `--halcyon-${kebab(name)}-elevation-${i + 1}: ${e};`).join('\n')
         ).join('\n')
 
     const stateLayerVars = Object.entries({
@@ -216,7 +216,7 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
         ).join('\n')
 
     // this always gets generated as a color that's way too dark, so fix it
-    if(kind == 'light') {
+    if (kind == 'light') {
         scheme.shadow = 'rgba(0, 0, 0, 0.12)'
     }
 
@@ -240,7 +240,7 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
         additional
     ].join('\n')
 }
-    
+
 /**
  * Create a Halcyon plugin instance.
  * @param options The options to use.
@@ -264,40 +264,40 @@ export const Halcyon = <Theme extends HalcyonTheme>(options: HalcyonPluginOption
         name: 'halcyon-vue',
         enforce: 'post',
         resolveId(id) {
-        if (id === themeMID) {
-            return themeRMID
-        } else if (id === baseMID) {
-            return baseRMID
-        } else if (id === resetMID) {
-            return resetRMID
-        }
+            if (id === themeMID) {
+                return themeRMID
+            } else if (id === baseMID) {
+                return baseRMID
+            } else if (id === resetMID) {
+                return resetRMID
+            }
         },
         load(id) {
             if (id === resetRMID) {
                 return reset
             } else
-        if (id === baseRMID) {
-            return baseTheme
-        } else if (id === themeRMID) {
-            const common = ':root { --halcyon-modal-z: 50; }'
+                if (id === baseRMID) {
+                    return baseTheme
+                } else if (id === themeRMID) {
+                    const common = ':root { --halcyon-modal-z: 50; --halcyon-snackbar-z: 100; }'
 
-            const lightTheme = `:root {\n${themeToVars(theme.schemes.light, theme.palettes, 'light')}\n}`
+                    const lightTheme = `:root {\n${themeToVars(theme.schemes.light, theme.palettes, 'light')}\n}`
 
-            const darkVars = themeToVars(theme.schemes.dark, theme.palettes, 'dark')
-            let darkTheme: string
-            if (options.darkMode === 'class') {
-                let className = options.darkModeClass ?? DEFAULT_DARK_MODE_CLASS
-                // be kind and remove the dot if it's there
-                if (className.startsWith('.')) {
-                    className = className.slice(1)
+                    const darkVars = themeToVars(theme.schemes.dark, theme.palettes, 'dark')
+                    let darkTheme: string
+                    if (options.darkMode === 'class') {
+                        let className = options.darkModeClass ?? DEFAULT_DARK_MODE_CLASS
+                        // be kind and remove the dot if it's there
+                        if (className.startsWith('.')) {
+                            className = className.slice(1)
+                        }
+                        darkTheme = `.${className} {\n${darkVars}\n}`
+                    } else {
+                        darkTheme = `@media (prefers-color-scheme: dark) {\n:root {\n${darkVars}\n}\n}`
+                    }
+
+                    return common + '\n' + lightTheme + '\n' + darkTheme
                 }
-                darkTheme = `.${className} {\n${darkVars}\n}`
-            } else {
-                darkTheme = `@media (prefers-color-scheme: dark) {\n:root {\n${darkVars}\n}\n}`
-            }
-
-            return common + '\n' + lightTheme + '\n' + darkTheme 
-        }
         },
     })
 

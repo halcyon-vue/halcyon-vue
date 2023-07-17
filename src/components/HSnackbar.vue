@@ -74,6 +74,7 @@ onUnmounted(() => unlisten(listener))
 @use "../util";
 
 #snackbar-container {
+    z-index: var(--halcyon-snackbar-z);
     position: fixed;
     bottom: 24px;
     left: 12px;
@@ -88,7 +89,7 @@ onUnmounted(() => unlisten(listener))
 }
 
 .notification {
-    z-index: 160;
+    //z-index: 160;
     display: flex;
     flex-direction: row;
     align-items: center;
