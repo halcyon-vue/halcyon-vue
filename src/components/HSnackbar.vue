@@ -89,7 +89,6 @@ onUnmounted(() => unlisten(listener))
 }
 
 .notification {
-    //z-index: 160;
     display: flex;
     flex-direction: row;
     align-items: center;
