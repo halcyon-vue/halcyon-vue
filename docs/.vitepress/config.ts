@@ -55,6 +55,7 @@ export default defineConfig({
           { text: 'Navigation drawer', link: '/components/navigation-drawer' },
           { text: 'Navigation rail', link: '/components/navigation-rail' },
           { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
+          { text: 'Snackbar', link: '/components/snackbar' },
           { text: 'Top app bar', link: '/components/top-app-bar' },
         ]
       }

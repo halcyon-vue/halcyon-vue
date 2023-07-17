@@ -36,6 +36,9 @@ import HNavigationRail from './components/HNavigationRail.vue'
 import HDivider from './components/HDivider.vue'
 // @ts-ignore
 import HCheckbox from './components/HCheckbox.vue'
+// @ts-ignore
+import HSnackbar from './components/HSnackbar.vue'
+import * as snackbar from './snackbar'
 export {
     HButton,
     HBottomAppBar,
@@ -55,5 +58,7 @@ export {
     HSubmenu,
     HTopAppBar,
     HDivider,
-    HCheckbox
+    HCheckbox,
+    HSnackbar,
+    snackbar
 }
