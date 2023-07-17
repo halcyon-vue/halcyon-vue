@@ -52,7 +52,7 @@ onUnmounted(() => unlisten(listener))
 
 <template>
     <Teleport to="body">
-        <div id="snackbar-container" role="alert">
+        <div id="snackbar-container" role="alert" :class="[align]">
             <Transition>
                 <div
                     v-if="currentNotification"
@@ -93,10 +93,14 @@ onUnmounted(() => unlisten(listener))
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    &.left {
+        justify-content: start;
+    }
 }
 
 .notification {
-    z-index: 100;
+    z-index: 160;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -5,6 +5,14 @@ import { HSnackbar, snackbar, HButton, HTextField, HCheckbox } from '../../src'
 import Preview from '../Preview.vue'
 import { ref } from 'vue'
 
+const options = {
+    alignLeft: {
+        kind: 'bool',
+        default: false,
+        label: 'Align left'
+    },
+}
+
 const handler = () => {
     alert('Action completed!')
 }
@@ -49,7 +57,7 @@ const showSnackbar = () => {
 }
 </style>
 
-<preview>
+<preview :options="options" v-slot="{ state }">
     <div class="preview-column">
         <div class="form">
             <h-text-field
@@ -81,7 +89,7 @@ const showSnackbar = () => {
         </div>
         <h-button kind="filled" @click="showSnackbar" content="Show snackbar" />
     </div>
-    <h-snackbar />
+    <h-snackbar :align="state.alignLeft ? 'left' : 'center'" />
 </preview>
 
 Snackbars show short updates about app processes at the bottom of the screen.
