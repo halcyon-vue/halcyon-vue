@@ -16,36 +16,36 @@ const currentNotification: Ref<Notification | null> = ref(null)
 const addNext = () => {
     const notification = popNotification()
     currentNotification.value = notification
-    if(!notification) {
-      working.value = false
-      return
+    if (!notification) {
+        working.value = false
+        return
     }
-    if(!notification.persistent) {
+    if (!notification.persistent) {
         setTimeout(close, 4000)
     }
 }
 
 const close = () => {
-  currentNotification.value = null
-  setTimeout(addNext, 300)
+    currentNotification.value = null
+    setTimeout(addNext, 300)
 }
 
 const listener = () => {
-  if(!working.value) {
-    working.value = true
-    addNext()
-  }
+    if (!working.value) {
+        working.value = true
+        addNext()
+    }
 }
 
 const action = () => {
-  const handler = currentNotification.value?.action?.handler
-  if(handler) {
-    handler()
-    close()
-  }
+    const handler = currentNotification.value?.action?.handler
+    if (handler) {
+        handler()
+        close()
+    }
 }
 
-onMounted(() =>   listen(listener))
+onMounted(() => listen(listener))
 onUnmounted(() => unlisten(listener))
 
 </script>
@@ -54,27 +54,15 @@ onUnmounted(() => unlisten(listener))
     <Teleport to="body">
         <div id="snackbar-container" role="alert" :class="[align]">
             <Transition>
-                <div
-                    v-if="currentNotification"
-                    class="notification"
-                    :class="{ multiline: currentNotification.multiline }"
-                >
+                <div v-if="currentNotification" class="notification" :class="{ multiline: currentNotification.multiline }">
                     <span class="message">
                         {{ currentNotification.message }}
                     </span>
-                    <h-button
-                        v-if="currentNotification.action"
-                        kind="text"
-                        @click="action"
-                    >
-                        {{  currentNotification.action.label }}
+                    <h-button v-if="currentNotification.action" kind="text" @click="action">
+                        {{ currentNotification.action.label }}
                     </h-button>
-                    <h-icon-button
-                        v-if="currentNotification.persistent"
-                        label="Close"
-                        @click="close"
-                    >
-                        <close-icon/>
+                    <h-icon-button v-if="currentNotification.persistent" label="Close" @click="close">
+                        <close-icon />
                     </h-icon-button>
                 </div>
             </Transition>
@@ -105,7 +93,7 @@ onUnmounted(() => unlisten(listener))
     flex-direction: row;
     align-items: center;
     height: 48px;
-    max-width: 70ch;
+    max-width: min(70ch, calc(100vw - 24px));
     min-width: 30ch;
     padding: 0 8px 0 16px;
     border-radius: 4px;
@@ -143,8 +131,8 @@ onUnmounted(() => unlisten(listener))
     transform: scaleY(0.7);
     opacity: 0;
 }
+
 .v-leave-to {
     opacity: 0;
 }
-
 </style>

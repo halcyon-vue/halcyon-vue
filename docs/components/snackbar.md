@@ -97,7 +97,77 @@ Snackbars show short updates about app processes at the bottom of the screen.
 
 [m3-snackbar]: https://material.io/components/snackbar
 
+## Props
+
+```ts
+defineProps<{
+    // Whether to align the notifications on larger screens towards the center
+    // of the screen, or towards the left.
+    align?: 'center' | 'left'
+}>()
+```
+
 ## API
 
 The snackbar has a separate API which can be imported as the `snackbar` object.
 
+```ts
+/**
+ * Object representing a notification.
+ */
+export interface Notification {
+    // The text to display.
+    message: string,
+    // The action to display, if any.
+    action?: {
+        // The label for the button on the action.
+        label: string,
+        // The function to be called when this action is selected.
+        handler: () => any
+    },
+    // Whether the notification is persistent. If so, a close button will display.
+    persistent?: boolean,
+    // If multiple lines of text are permitted.
+    multiline?: boolean
+}
+
+/**
+ * The current queue of notifications.
+ */
+export const currentNotifications: Notification[] = []
+
+/**
+ * Adds a notification to the queue.
+ * @param {Notification} notification The notification to add.
+ * @returns {number} The new length of the queue.
+ */
+export const pushNotification: (notification: Notification): number
+
+/**
+ * Removes the first notification from the queue and returns it.
+ * You should not need to use this except for in special situations.
+ * @returns {Notification} The notification that was removed.
+ */
+export const popNotification = (): Notification
+
+/**
+ * A function that will be called when new notifications are pushed.
+ */
+export type Listener = (notifications: Notification[]) => any
+
+/**
+ * The list of listeners.
+ */
+export const listeners: Listener[] = []
+
+/**
+ * Adds a listener to the list.
+ * @returns {Listener} The listener that was added.
+ */
+export const listen = (listener: Listener): number
+
+/**
+ * Removes a listener from the list.
+ */
+export const unlisten = (listener: Listener): void
+```

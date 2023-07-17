@@ -41,7 +41,10 @@ export const pushNotification = (notification: Notification) => {
  */
 export const popNotification = () => currentNotifications.shift()
 
-export const listen = (listener: Listener) => listeners.push(listener)
+export const listen = (listener: Listener) => {
+    listeners.push(listener)
+    return listener
+}
 
 export const unlisten = (listener: Listener) => {
     const index = listeners.indexOf(listener)
