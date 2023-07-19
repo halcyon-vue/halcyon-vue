@@ -54,3 +54,54 @@ const previewOptions = {
         <close-circle />
     </h-icon-button>
 </preview>
+
+::: details Source code
+
+```html
+<h-select
+    label="Color"
+    :options="selectOptions"
+    v-model="selected"
+    :kind="state.kind"
+/>
+<h-icon-button label="Clear" @click="selected = null">
+    <close-circle />
+</h-icon-button>
+```
+
+:::
+
+A Select component helps users choose between a set of choices.
+There is no current official documentation for this component, but
+[the guidelines for menus][m3-menu] and [the guidelines for text fields][m3-text]
+have pertinent information.
+
+## Props
+
+```ts
+interface Option {
+    // The text to be displayed in the select.
+    label: string
+    // The value that this option represents.
+    value: T
+    // Whether this option is disabled.
+    disabled?: boolean
+}
+
+const props = defineProps<{
+    // The label for the overall select.
+    label: string
+    // The current value, if any.
+    // This can be bound with v-model.
+    modelValue: T | null
+    // The options to display.
+    options: Option[]
+    // Whether this is scrollable or not.
+    scrollable?: boolean
+    // What kind of select to render.
+    kind?: 'outlined' | 'filled'
+}>()
+```
+
+[m3-menu]: https://m3.material.io/components/menus/guidelines
+[m3-text]: https://m3.material.io/components/text-fields/guidelines
