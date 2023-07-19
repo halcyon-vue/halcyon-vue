@@ -38,6 +38,8 @@ import HDivider from './components/HDivider.vue'
 import HCheckbox from './components/HCheckbox.vue'
 // @ts-ignore
 import HSnackbar from './components/HSnackbar.vue'
+// @ts-ignore
+import HSelect from './components/HSelect.vue'
 import * as snackbar from './snackbar'
 export {
     HButton,
@@ -60,5 +62,6 @@ export {
     HDivider,
     HCheckbox,
     HSnackbar,
+    HSelect,
     snackbar
 }

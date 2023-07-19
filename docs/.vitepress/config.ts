@@ -47,6 +47,7 @@ export default defineConfig({
             ]
           },
           { text: 'Checkbox', link: '/components/checkbox' },
+          { text: 'Select', link: '/components/select' },
           { text: 'Switch', link: '/components/switch' },
           { text: 'Text field', link: '/components/text-field' },
           { text: 'Dialog', link: '/components/dialog' },
