@@ -3,17 +3,15 @@ import HButton from './components/HButton.vue'
 // @ts-ignore
 import HBottomAppBar from './components/HBottomAppBar.vue'
 // @ts-ignore
+import HCheckbox from './components/HCheckbox.vue'
+// @ts-ignore
+import HDialog from './components/HDialog.vue'
+// @ts-ignore
+import HDivider from './components/HDivider.vue'
+// @ts-ignore
 import HIconButton from './components/HIconButton.vue'
 // @ts-ignore
 import HFloatingActionButton from './components/HFloatingActionButton.vue'
-// @ts-ignore
-import HSegmentedButton from './components/HSegmentedButton.vue'
-// @ts-ignore
-import HSwitch from './components/HSwitch.vue'
-// @ts-ignore
-import HTextField from './components/HTextField.vue'
-// @ts-ignore
-import HDialog from './components/HDialog.vue'
 // @ts-ignore
 import HMenu from './components/HMenu.vue'
 // @ts-ignore
@@ -25,31 +23,32 @@ import HNavigationBar from './components/HNavigationBar.vue'
 // @ts-ignore
 import HNavigationButton from './components/HNavigationButton.vue'
 // @ts-ignore
-import HSubmenu from './components/HSubmenu.vue'
-// @ts-ignore
-import HTopAppBar from './components/HTopAppBar.vue'
-// @ts-ignore
 import HNavigationDrawer from './components/HNavigationDrawer.vue'
 // @ts-ignore
 import HNavigationRail from './components/HNavigationRail.vue'
 // @ts-ignore
-import HDivider from './components/HDivider.vue'
+import HSegmentedButton from './components/HSegmentedButton.vue'
 // @ts-ignore
-import HCheckbox from './components/HCheckbox.vue'
+import HSelect from './components/HSelect.vue'
 // @ts-ignore
 import HSnackbar from './components/HSnackbar.vue'
 // @ts-ignore
-import HSelect from './components/HSelect.vue'
+import HSubmenu from './components/HSubmenu.vue'
+// @ts-ignore
+import HSwitch from './components/HSwitch.vue'
+// @ts-ignore
+import HTextField from './components/HTextField.vue'
+// @ts-ignore
+import HTopAppBar from './components/HTopAppBar.vue'
 import * as snackbar from './snackbar'
 export {
     HButton,
     HBottomAppBar,
+    HCheckbox,
+    HDialog,
+    HDivider,
     HIconButton,
     HFloatingActionButton,
-    HSegmentedButton,
-    HSwitch,
-    HTextField,
-    HDialog,
     HMenu,
     HMenuButton,
     HMenuDivider,
@@ -57,11 +56,12 @@ export {
     HNavigationButton,
     HNavigationDrawer,
     HNavigationRail,
-    HSubmenu,
-    HTopAppBar,
-    HDivider,
-    HCheckbox,
-    HSnackbar,
+    HSegmentedButton,
     HSelect,
+    HSnackbar,
+    HSubmenu,
+    HSwitch,
+    HTextField,
+    HTopAppBar,
     snackbar
 }

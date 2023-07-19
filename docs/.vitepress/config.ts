@@ -36,6 +36,7 @@ export default defineConfig({
       {
         text: 'Components',
         items: [
+          { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
           {
             text: 'Buttons',
             collapsed: true,
@@ -47,16 +48,15 @@ export default defineConfig({
             ]
           },
           { text: 'Checkbox', link: '/components/checkbox' },
-          { text: 'Select', link: '/components/select' },
-          { text: 'Switch', link: '/components/switch' },
-          { text: 'Text field', link: '/components/text-field' },
           { text: 'Dialog', link: '/components/dialog' },
           { text: 'Menu', link: '/components/menu' },
           { text: 'Navigation bar', link: '/components/navigation-bar' },
           { text: 'Navigation drawer', link: '/components/navigation-drawer' },
           { text: 'Navigation rail', link: '/components/navigation-rail' },
-          { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
+          { text: 'Select', link: '/components/select' },
           { text: 'Snackbar', link: '/components/snackbar' },
+          { text: 'Switch', link: '/components/switch' },
+          { text: 'Text field', link: '/components/text-field' },
           { text: 'Top app bar', link: '/components/top-app-bar' },
         ]
       }
