@@ -193,6 +193,8 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  z-index: var(--halcyon-menu-z);
   
   background-color: var(--halcyon-surface-container);
   color: var(--halcyon-on-surface);

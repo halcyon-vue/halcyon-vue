@@ -33,6 +33,8 @@ button {
 
   margin: 0 16px 16px 0;
 
+  z-index: var(--halcyon-fab-z);
+
   &.shadow {
     @include util.shadow-md;
   }

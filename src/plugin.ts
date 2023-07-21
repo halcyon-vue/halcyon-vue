@@ -279,7 +279,14 @@ export const Halcyon = <Theme extends HalcyonTheme>(options: HalcyonPluginOption
                 if (id === baseRMID) {
                     return baseTheme
                 } else if (id === themeRMID) {
-                    const common = ':root { --halcyon-modal-z: 50; --halcyon-snackbar-z: 100; }'
+                    const common = `
+                    :root {
+                        --halcyon-fab-z: 45;
+                        --halcyon-modal-z: 50;
+                        --halcyon-snackbar-z: 100;
+                        --halcyon-menu-z: 200;
+                    }
+                    `
 
                     const lightTheme = `:root {\n${themeToVars(theme.schemes.light, theme.palettes, 'light')}\n}`
 

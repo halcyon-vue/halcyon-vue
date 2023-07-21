@@ -58,6 +58,8 @@ const vWatchSize = {
   max-width: 280px;
   min-width: 112px;
   border-radius: 4px;
+
+  z-index: var(--halcyon-menu-z);
   
   background-color: var(--halcyon-surface-container);
   color: var(--halcyon-on-surface);
