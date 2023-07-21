@@ -21,6 +21,7 @@ const props = defineProps<{
     options: Option[]
     scrollable?: boolean
     kind?: 'outlined' | 'filled'
+    disabled?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -39,6 +40,7 @@ const selectedLabel = computed(() => {
         @update:model-value="e => emit('update:modelValue', e)"
         class="listbox"
         as="div"
+        :disabled="disabled"
     >
         <ListboxButton v-slot="{ open }" as="template">
             <button :class="[kind || 'outlined', { open, populated: !!selectedLabel }]">
@@ -119,6 +121,12 @@ button {
             }
             outline: 2px solid var(--halcyon-primary);
         }
+
+        &:disabled {
+            outline-color: var(--halcyon-on-surface-o38);
+            color: var(--halcyon-on-surface-o38);
+            pointer-events: none;
+        }
     }
 
     &.filled {
@@ -167,7 +175,6 @@ button {
         color: var(--halcyon-on-surface);
     }
 
-    
 }
 
 .menu-container {

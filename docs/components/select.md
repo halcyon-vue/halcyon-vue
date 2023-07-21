@@ -40,6 +40,11 @@ const previewOptions = {
             },
         ]
     },
+    disabled: {
+        kind: 'bool',
+        default: false,
+        label: 'Disabled'
+    }
 }
 </script>
 
@@ -49,6 +54,7 @@ const previewOptions = {
         :options="selectOptions"
         v-model="selected"
         :kind="state.kind"
+        :disabled="state.disabled"
     />
     <h-icon-button label="Clear" @click="selected = null">
         <close-circle />
@@ -100,6 +106,8 @@ const props = defineProps<{
     scrollable?: boolean
     // What kind of select to render.
     kind?: 'outlined' | 'filled'
+    // Whether the select as a whole is disabled or not.
+    disabled?: boolean
 }>()
 ```
 
