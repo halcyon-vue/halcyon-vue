@@ -277,6 +277,11 @@ textarea, input {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     border-bottom: 1px solid var(--halcyon-on-surface-variant);
+
+    &:disabled {
+      background-color: var(--halcyon-on-surface-o4);
+      border-bottom: 1px solid var(--halcyon-on-surface-o38)
+    }
   }
   .filled.focused &, .filled.focused &:hover:not(:disabled) {
     border-bottom: 2px solid var(--halcyon-primary);

@@ -124,7 +124,6 @@ button {
 
         &:disabled {
             outline-color: var(--halcyon-on-surface-o38);
-            color: var(--halcyon-on-surface-o38);
             pointer-events: none;
         }
     }
@@ -137,6 +136,11 @@ button {
 
         &.open {
             border-color: var(--halcyon-primary);
+        }
+
+        &:disabled {
+            background-color: var(--halcyon-on-surface-o4);
+            border-bottom: 1px solid var(--halcyon-on-surface-o38)
         }
     }
 
@@ -173,6 +177,13 @@ button {
         top: 4px;
 
         color: var(--halcyon-on-surface);
+    }
+
+    &:disabled{
+        color: var(--halcyon-on-surface-o38);
+        .selected {
+            color: var(--halcyon-on-surface-o38);
+        }
     }
 
 }
