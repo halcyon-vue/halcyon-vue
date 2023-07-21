@@ -43,7 +43,7 @@ const selectedLabel = computed(() => {
         :disabled="disabled"
     >
         <ListboxButton v-slot="{ open }" as="template">
-            <button :class="[kind || 'outlined', { open, populated: !!selectedLabel }]">
+            <button :class="[kind || 'outlined', { open, populated: !!selectedLabel }]" v-bind="$attrs">
                 <span class="label">{{ label }}</span>
                 <Transition name="label">
                     <span v-if="selectedLabel" class="selected">{{ selectedLabel }}</span>

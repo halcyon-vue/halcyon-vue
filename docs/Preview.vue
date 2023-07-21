@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { HCheckbox } from '../src'
+import { HCheckbox, HSelect } from '../src'
 import { reactive, ref } from 'vue'
 import { nanoid } from 'nanoid'
 
@@ -49,10 +49,7 @@ const id = nanoid()
             <div class="preview-options" v-if="options">
                 <section v-for="[name, option] of opts" :key="name">
                     <div v-if="option.kind === 'select'">
-                        <label :for="`option-${name}-${id}`">{{ option.label }}</label>
-                        <select v-model="state[name]" :id="`option-${name}-${id}`">
-                            <option v-for="opt of option.options" :value="opt.value" :key="opt.value">{{ opt.label }}</option>
-                        </select>
+                        <h-select :label="option.label" v-model="state[name]" :options="option.options" style="width: 100%;"/>
                     </div>
                     <div v-else-if="option.kind === 'bool'">
                         <label :for="`option-${name}-${id}`">{{ option.label }}</label>
