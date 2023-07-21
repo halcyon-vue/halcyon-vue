@@ -201,6 +201,8 @@ onUpdated(() => {
 
         ref="input"
 
+        v-bind="$attrs"
+
         @focus="focus"
         @blur="blur"
         @input="onInput"
