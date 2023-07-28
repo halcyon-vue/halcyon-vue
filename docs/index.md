@@ -5,11 +5,10 @@ layout: home
 hero:
   name: "Halcyon Docs"
   text: "Documentation for halcyon-vue"
-  tagline: My great project tagline
   actions:
     - theme: brand
       text: Get started
-      link: /get-started
+      link: /getting-started
     - theme: alt
       text: Component docs
       link: /components

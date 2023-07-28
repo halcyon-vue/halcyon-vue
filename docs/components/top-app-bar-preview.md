@@ -1,6 +1,7 @@
 ---
 title: Top app bar preview
 layout: false
+search: false
 ---
 
 <script setup>

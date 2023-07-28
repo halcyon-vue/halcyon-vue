@@ -27,14 +27,14 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Introduction',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Getting started', link: '/getting-started' },
+          { text: 'Components', link: '/components' }
         ]
       },
       {
-        text: 'Components',
+        text: 'Component APIs',
         items: [
           { text: 'Bottom app bar', link: '/components/bottom-app-bar' },
           {
@@ -68,6 +68,12 @@ export default defineConfig({
     footer: {
       message: 'Made with ❤ by <a href="https://autumns.page">Autumn</a>',
       copyright: '© 2023-present under MIT'
+    },
+    search: {
+      provider: 'local',
+      options: {
+        
+      }
     }
   },
   vite: {
