@@ -1,5 +1,8 @@
 # halcyon 🌅
 
+![npm](https://img.shields.io/npm/v/halcyon-vue?style=flat-square)
+![docs](https://img.shields.io/badge/docs-green?style=flat-square)
+
 A [Material You][m3] plugin and component library for [Vite] / [Vue 3][v3].
 
 > **Warning**
