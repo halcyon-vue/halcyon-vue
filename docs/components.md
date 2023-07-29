@@ -44,7 +44,7 @@ Badges are considered part of their parent element and thus not listed.
 ## Containment
 
 - Bottom sheet (to be implemented)
-- Card (to be implemented)
+- [Card](/components/card)
 - Carousel (to be implemented)
 - [Dialog](/components/dialog)
 - Side sheet (to be implemented)
