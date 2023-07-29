@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "lib": ["ES2020", "DOM"]
+    },
+    "extends": "@vue/tsconfig/tsconfig.json"
+}
