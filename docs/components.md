@@ -4,7 +4,26 @@ Components are interactive building blocks for creating a user interface.
 They can be organized into categories based on their purpose: Action,
 containment, communication, navigation, selection, and text input.
 
-At the moment, 15 of 27 components are implemented (55%!).
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const progress = ref('')
+
+// kind of filthy way to do this, but it works
+onMounted(() => {
+    const [implemented, total] =
+        [...document.querySelectorAll('.vp-doc ul')].
+            flatMap(e => [...e.children])
+            .map(n => n.firstChild.nodeType !== 3)
+            .reduce((a, v) =>  [a[0] + (v ? 1 : 0), a[1] + 1], [0, 0])
+
+    const percent = Math.round(implemented / total * 100)
+
+    progress.value = `At the moment, ${implemented} of ${total} components are implemented (${percent}%!).`
+})
+</script>
+
+{{ progress }}
 
 ## Action
 
