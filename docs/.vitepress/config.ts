@@ -47,6 +47,7 @@ export default defineConfig({
               { text: 'Segmented button', link: '/components/segmented' },
             ]
           },
+          { text: 'Card', link: '/components/card' },
           { text: 'Checkbox', link: '/components/checkbox' },
           { text: 'Dialog', link: '/components/dialog' },
           { text: 'Menu', link: '/components/menu' },

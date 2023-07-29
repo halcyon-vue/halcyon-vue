@@ -3,6 +3,8 @@ import HButton from './components/HButton.vue'
 // @ts-ignore
 import HBottomAppBar from './components/HBottomAppBar.vue'
 // @ts-ignore
+import HCard from './components/HCard.vue'
+// @ts-ignore
 import HCheckbox from './components/HCheckbox.vue'
 // @ts-ignore
 import HDialog from './components/HDialog.vue'
@@ -44,6 +46,7 @@ import * as snackbar from './snackbar'
 export {
     HButton,
     HBottomAppBar,
+    HCard,
     HCheckbox,
     HDialog,
     HDivider,
