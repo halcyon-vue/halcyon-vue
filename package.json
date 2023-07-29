@@ -1,7 +1,15 @@
 {
   "name": "halcyon-vue",
   "version": "1.0.1",
-  "description": "",
+  "description": "Material 3 library for Vue",
+  "author": {
+    "name": "Autumn",
+    "url": "https://autumns.page"
+  },
+  "homepage": "https://halcyon-vue.github.io/halcyon-vue/getting-started.html",
+  "bugs": "https://github.io/halcyon-vue/halcyon-vue",
+  "keywords": [],
+  "license": "MIT",
   "main": "./dist/halcyon-vue.cjs",
   "module": "./dist/halcyon-vue.js",
   "types": "./dist/index.d.ts",
@@ -26,9 +34,6 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@headlessui/vue": "^1.7.13",
     "@vueuse/components": "^10.2.0",
