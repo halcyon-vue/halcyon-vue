@@ -33,7 +33,8 @@ const element = ref(null as HTMLElement | null)
 const tooltip = ref(null as HTMLElement | null)
 const { floatingStyles } = useFloating(element, tooltip, {
     placement: props.rich ? 'bottom-end' : 'bottom',
-    middleware: [offset(), autoPlacement()]
+    // @ts-ignore the docs give a different valid type
+    middleware: [offset(), autoPlacement({ alignment: 'bottom' })]
 })
 
 const _open = ref(false)
