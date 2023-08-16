@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HButton from './HButton.vue'
-import { useFloating, offset as offset_, autoPlacement } from '@floating-ui/vue'
+import { useFloating, offset as offset_, flip } from '@floating-ui/vue'
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 import { notify, listen, unlisten } from '../tooltip'
 
@@ -32,9 +32,8 @@ const offset = () => {
 const element = ref(null as HTMLElement | null)
 const tooltip = ref(null as HTMLElement | null)
 const { floatingStyles } = useFloating(element, tooltip, {
-    placement: props.rich ? 'bottom-end' : 'bottom',
-    // @ts-ignore the docs give a different valid type
-    middleware: [offset(), autoPlacement({ alignment: 'bottom' })]
+    placement: props.rich ? 'bottom-start' : 'bottom',
+    middleware: [offset(), flip()]
 })
 
 const _open = ref(false)
