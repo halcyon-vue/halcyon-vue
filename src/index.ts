@@ -7,6 +7,8 @@ import HCard from './components/HCard.vue'
 // @ts-ignore
 import HCheckbox from './components/HCheckbox.vue'
 // @ts-ignore
+import HCombobox from './components/HCombobox.vue'
+// @ts-ignore
 import HDialog from './components/HDialog.vue'
 // @ts-ignore
 import HDivider from './components/HDivider.vue'
@@ -50,6 +52,7 @@ export {
     HBottomAppBar,
     HCard,
     HCheckbox,
+    HCombobox,
     HDialog,
     HDivider,
     HIconButton,
