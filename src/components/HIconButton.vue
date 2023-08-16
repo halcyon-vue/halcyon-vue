@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import HTooltip from './HTooltip.vue';
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
@@ -14,6 +15,8 @@ const props = defineProps<{
   // What the toggle state defaults to.
   checked?: boolean
   modelValue?: boolean
+
+  noTooltip?: boolean
 }>()
 
 if (props.toggleable && (props.as === 'a' || props.as === 'router-link')) {
@@ -42,16 +45,18 @@ const toggle = () => {
 </script>
 
 <template>
-  <component :is="as || 'button'" :aria-label="label" :disabled="disabled" class="h-icon-button" :class="{      
-    selected,
-    toggleable: _toggleable,
-    [kind || 'standard']: true,
-  }" @click="toggle" :role="role" :to="as === 'router-link' ? to : undefined" :href="as === 'a' ? to : undefined" :title="label">
-    <span class="state-layer">
-      <slot v-if="!toggleable" />
-      <slot name="selected" v-if="toggleable && selected" />
-      <slot name="unselected" v-if="toggleable && (!selected)" />
-    </span>
+  <component :content="label" :is="noTooltip ? 'template' : HTooltip">
+    <component :is="as || 'button'" :aria-label="label" :disabled="disabled" class="h-icon-button" :class="{      
+      selected,
+      toggleable: _toggleable,
+      [kind || 'standard']: true,
+    }" @click="toggle" :role="role" :to="as === 'router-link' ? to : undefined" :href="as === 'a' ? to : undefined" v-bind="$attrs">
+      <span class="state-layer">
+        <slot v-if="!toggleable" />
+        <slot name="selected" v-if="toggleable && selected" />
+        <slot name="unselected" v-if="toggleable && (!selected)" />
+      </span>
+    </component>
   </component>
 </template>
 

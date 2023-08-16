@@ -35,9 +35,11 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
+    "@floating-ui/vue": "^1.0.2",
     "@headlessui/vue": "^1.7.13",
     "@vueuse/components": "^10.2.0",
     "@vueuse/core": "^10.2.0",
+    "floating-vue": "2.0.0-beta.24",
     "vue": "^3.2.47"
   },
   "devDependencies": {

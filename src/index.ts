@@ -41,6 +41,8 @@ import HSwitch from './components/HSwitch.vue'
 // @ts-ignore
 import HTextField from './components/HTextField.vue'
 // @ts-ignore
+import HTooltip from './components/HTooltip.vue'
+// @ts-ignore
 import HTopAppBar from './components/HTopAppBar.vue'
 import * as snackbar from './snackbar'
 export {
@@ -65,6 +67,7 @@ export {
     HSubmenu,
     HSwitch,
     HTextField,
+    HTooltip,
     HTopAppBar,
     snackbar
 }
