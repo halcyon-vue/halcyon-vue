@@ -38,6 +38,64 @@ const { floatingStyles } = useFloating(element, tooltip, {
 
 const _open = ref(false)
 
+/* CLICK HANDLING */
+
+const isPressed = ref(false)
+
+const clickStartedAt = ref(null as number | null)
+const clickOpenTimer = ref(null as number | null)
+const clickCloseTimer = ref(null as number | null)
+
+const clearClickCloseTimer = () => {
+    if (clickCloseTimer.value) {
+        window.clearTimeout(clickCloseTimer.value)
+        clickCloseTimer.value = null
+    }
+}
+
+const onClickClose = () => {
+    console.log('closing: click timer done')
+    clickStartedAt.value = null
+    _open.value = false
+}
+
+const onMouseDown = () => {
+    console.log('clicked')
+
+    clickStartedAt.value = Date.now()
+
+    isPressed.value = true
+
+    clearClickCloseTimer()
+    clickOpenTimer.value = window.setTimeout(() => {
+        if (isPressed.value) {
+            _open.value = true
+
+            clickCloseTimer.value = window.setTimeout(onClickClose, 1500) 
+        }
+    }, 500)
+}
+
+const onMouseUp = () => {
+    if (clickStartedAt.value) {
+        const clickDuration = Date.now() - clickStartedAt.value
+        if(clickDuration > 500) {
+            _open.value = true
+
+            clearClickCloseTimer()
+
+            clickCloseTimer.value = window.setTimeout(onClickClose, 1500) 
+        }
+
+        clickStartedAt.value = null
+    }
+}
+
+const onMouseLeave = () => {
+    clearClickCloseTimer()
+    onClickClose()
+}
+
 /* HOVER HANDLING */
 const hoverOpenTimer = ref(null as number | null)
 const hoverCloseTimer = ref(null as number | null)
@@ -62,11 +120,9 @@ const onMouseOut = () => {
         console.log('closing: mouseout timer done')
         _open.value = false
     }, 1500)
+
+    clickStartedAt.value = null
 }
-
-/* CLICK HANDLING */
-
-const clickTimer = ref(null as number | null)
 
 /* HANDLE OTHER TOOLTIPS */
 const listener = () => {
@@ -84,6 +140,9 @@ onUnmounted(() => unlisten(listener))
         ref="element"
         @mouseover="onMouseOver"
         @mouseleave="onMouseOut"
+        @pointerdown="onMouseDown"
+        @pointerup="onMouseUp"
+        @pointercancel="onMouseLeave"
     >
         <slot v-bind="$attrs" />
     </div>
