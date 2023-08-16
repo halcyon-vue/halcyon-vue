@@ -36,3 +36,9 @@ const ioOpts = { threshold: [1] }
 export const pinnedHandler: [((entries: IntersectionObserverEntry[]) => void), {
     threshold: number[];
 }] = [ onIntersectionObserver, ioOpts ]
+
+export interface SelectOption<T> {
+    label: string
+    value: T
+    disabled?: boolean
+}

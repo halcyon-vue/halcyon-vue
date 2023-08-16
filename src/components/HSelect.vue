@@ -8,18 +8,14 @@ import {
   ListboxOption,
 } from '@headlessui/vue'
 import { computed } from 'vue'
+import { SelectOption } from '../common'
 
-interface Option {
-    label: string
-    value: T
-    disabled?: boolean
-}
+
 
 const props = defineProps<{
     label: string
     modelValue: T | null
-    options: Option[]
-    scrollable?: boolean
+    options: SelectOption<T>[]
     kind?: 'outlined' | 'filled'
     disabled?: boolean
 }>()
@@ -195,30 +191,28 @@ button {
 ul {
     top: 2px;
     left: 1px;
-  position: relative;
-  max-width: 280px;
-  min-width: 112px;
-  border-radius: 4px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    position: relative;
+    max-width: 280px;
+    min-width: 112px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-  z-index: var(--halcyon-menu-z);
-  
-  background-color: var(--halcyon-surface-container);
-  color: var(--halcyon-on-surface);
+    z-index: var(--halcyon-menu-z);
+    
+    background-color: var(--halcyon-surface-container);
+    color: var(--halcyon-on-surface);
 
-  @include util.shadow-md;
+    @include util.shadow-md;
 
-  display: flex;
-  flex-direction: column;
-
-  .listbox.scrollable & {
+    display: flex;
+    flex-direction: column;
+    
     max-height: 20vh;
     overflow-y: auto;
-  }
 }
 
 .label-leave-active {

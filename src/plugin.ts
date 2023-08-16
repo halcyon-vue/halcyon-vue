@@ -226,7 +226,8 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
         `--halcyon-on-surface-o16: ${scheme.onSurface}29;`,
         `--halcyon-on-surface-o38: ${scheme.onSurface}61;`,
         `--halcyon-on-surface-variant-o16: ${scheme.onSurfaceVariant}29;`,
-        `--halcyon-on-surface-variant-o38: ${scheme.onSurfaceVariant}61;`
+        `--halcyon-on-surface-variant-o38: ${scheme.onSurfaceVariant}61;`,
+        `--halcyon-outline-o12: ${scheme.outline}1c;`,
     ].join('\n')
 
     const schemeVars = Object.entries(scheme)
