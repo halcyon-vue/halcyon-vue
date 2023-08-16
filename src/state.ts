@@ -1,6 +1,3 @@
 import { reactive } from 'vue'
 
-export const state = reactive({
-    isBottomBarVisible: false
-})
-
+export const state = reactive({ })
