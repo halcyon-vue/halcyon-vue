@@ -7,7 +7,8 @@ import { notify, listen, unlisten } from '../tooltip'
 const props = defineProps<{
     content: string
 
-    offset?: 'none' | 'small' | 'large'
+    offset?: 'none' | 'small' | 'large' | number
+    onSide?: boolean
 
     rich?: boolean
     title?: string
@@ -26,13 +27,30 @@ const offset = () => {
         case 'small': return offset_(4)
         case 'large': return offset_(8)
     }
+    if(typeof props.offset === 'number') {
+        return offset_(props.offset)
+    }
     return offset_(0)
 }
+
+const placement = (() => {
+    if(props.rich) {
+        if(props.onSide) {
+            return 'right-end'
+        } else {
+            return 'bottom-start'
+        }
+    } else if(props.onSide) {
+        return 'right'
+    } else {
+        return 'bottom'
+    }
+})()
 
 const element = ref(null as HTMLElement | null)
 const tooltip = ref(null as HTMLElement | null)
 const { floatingStyles } = useFloating(element, tooltip, {
-    placement: props.rich ? 'bottom-start' : 'bottom',
+    placement,
     middleware: [offset(), flip()]
 })
 
@@ -54,13 +72,13 @@ const clearClickCloseTimer = () => {
 }
 
 const onClickClose = () => {
-    console.log('closing: click timer done')
+    //console.log('closing: click timer done')
     clickStartedAt.value = null
     _open.value = false
 }
 
 const onMouseDown = () => {
-    console.log('clicked')
+    //console.log('clicked')
 
     clickStartedAt.value = Date.now()
 
@@ -117,7 +135,7 @@ const onMouseOut = () => {
         hoverOpenTimer.value = null
     }
     hoverCloseTimer.value = window.setTimeout(() => {
-        console.log('closing: mouseout timer done')
+        //console.log('closing: mouseout timer done')
         _open.value = false
     }, 1500)
 
@@ -126,7 +144,7 @@ const onMouseOut = () => {
 
 /* HANDLE OTHER TOOLTIPS */
 const listener = () => {
-    console.log('closing: another tooltip opened')
+    //console.log('closing: another tooltip opened')
     _open.value = false
 }
 

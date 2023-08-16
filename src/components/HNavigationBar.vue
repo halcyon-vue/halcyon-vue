@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
 import { useHideOnScroll } from '../common'
 
 defineProps<{
@@ -13,6 +13,7 @@ useHideOnScroll({
     onDown: () => { show.value = false }
 })
 
+provide('in bar', true)
 
 </script>
 

@@ -84,6 +84,13 @@ defineProps<{
     // The text content of the tooltip.
     content: string
 
+    // The amount offset to have: 0px, 4px, 8px respectively.
+    // For advanced uses, a number is allowed.
+    offset?: 'none' | 'small' | 'large' | number
+    // Whether the tooltip should be on the horizontal axis of the target.
+    // By default, it's on the vertical axis.
+    onSide?: boolean
+
     // Whether this is a "rich" tooltip, which can contain multiple lines of
     // text, a title, and actions.
     rich?: boolean

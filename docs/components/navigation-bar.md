@@ -164,6 +164,8 @@ defineProps<{
     showBadge?: boolean
     // The count to show on the notification badge, if any.
     badgeCount?: number
+    // Whether to hide the tooltip.
+    noTooltip?: boolean
 }>()
 ```
 
