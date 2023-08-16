@@ -71,6 +71,10 @@ const actions = [
 
 :::
 
+::: warning
+This does not work very well on mobile.
+:::
+
 Tooltips display brief labels or messages.
 
 ## Props
