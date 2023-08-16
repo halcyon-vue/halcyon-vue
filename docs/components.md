@@ -48,7 +48,7 @@ Badges are considered part of their parent element and thus not listed.
 - Carousel (to be implemented)
 - [Dialog](/components/dialog)
 - Side sheet (to be implemented)
-- Tooltip (to be implemented)
+- [Tooltip](/components/tooltip)
 
 Dividers and lists are considered trivial to implement for one's own application,
 and not included.
