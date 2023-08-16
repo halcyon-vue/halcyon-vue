@@ -3,7 +3,7 @@ import HNavigationDrawer from './HNavigationDrawer.vue'
 import HIconButton from './HIconButton.vue'
 import HFloatingActionButton from './HFloatingActionButton.vue'
 import MenuIcon from '~icons/mdi/menu'
-import { ref } from 'vue'
+import { provide, ref } from 'vue'
 defineProps<{
     align?: 'top' | 'center' | 'bottom'
     hasDrawer?: boolean
@@ -14,6 +14,8 @@ defineProps<{
 const emit = defineEmits<{
     (e: 'fab-click', event: Event): void
 }>()
+
+provide('in rail', true)
 
 const drawerOpen = ref(false)
 </script>

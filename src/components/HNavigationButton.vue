@@ -17,6 +17,17 @@ const props = defineProps<{
 
 const inDrawer = inject('in drawer', false)
 const inBar = inject('in bar', false)
+const inRail = inject('in rail', false)
+
+const offset = computed(() => {
+    if (inBar) {
+        return 18
+    } else if (inRail) {
+        return 16
+    } else {
+        return 'small'
+    }
+})
 
 const hideTooltip = computed(() => props.noTooltip || inDrawer)
 </script>
@@ -41,7 +52,7 @@ const hideTooltip = computed(() => props.noTooltip || inDrawer)
             <slot name="inactive" />
         </template>
     </h-navigation-button-inner>
-    <h-tooltip :content="label" :on-side="!inBar" :offset="inBar ? 18 :'small'" v-else>
+    <h-tooltip :content="label" :on-side="!inBar" :offset="offset" v-else>
         <h-navigation-button-inner
             :content="content"
             :label="label"
