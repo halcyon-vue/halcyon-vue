@@ -22,7 +22,7 @@ const drawerOpen = ref(false)
 
 <template>
     <Teleport to="body">
-        <nav>
+        <nav v-bind="$attrs">
             <h-icon-button
                 v-if="hasDrawer"
                 kind="standard"
