@@ -22,7 +22,7 @@ const close = () => emit('update:open', false)
 const { isSwiping, direction } = useSwipe(document)
 
 watch(isSwiping, (isSwiping) => {
-    if (!props.static) return
+    if (props.static) return
     if (isSwiping) {
         if (direction.value === 'left') {
             close()
