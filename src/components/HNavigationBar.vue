@@ -20,7 +20,7 @@ provide('in bar', true)
 <template>
     <Teleport to="body">
         <Transition name="nav-bar" appear>
-            <nav :class="{'off-screen': hideOnScroll ? !show : false}" @focusin="show = true">
+            <nav :class="{'off-screen': hideOnScroll ? !show : false}" @focusin="show = true" v-bind="$attrs">
                 <slot/>
             </nav>
         </Transition>
