@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, inject } from 'vue';
-import HTooltip from './HTooltip.vue';
 
 const props = defineProps<{
     content?: string
@@ -30,19 +29,21 @@ const badgeText = computed(() => {
     }
 })
 
-const hideTooltip = computed(() => props.noTooltip || inDrawer)
+const _hideLabel = computed(() => {
+    return props.hideLabel && !inDrawer
+})
 </script>
 
 <template>
     
         <component :is="useRouterLink ? 'router-link' : 'a'" :aria-label="label" class="navigation-button"
-            :class="{ active: isActive, 'in-drawer': inDrawer, 'label-hidden': hideLabel && !inDrawer }" :href="to" :to="to" @click="handleClick" tabindex=0>
+            :class="{ active: isActive, 'in-drawer': inDrawer, 'label-hidden': _hideLabel }" :href="to" :to="to" @click="handleClick" tabindex=0>
             <div class="state-layer-outer" v-if="inDrawer">
                 <div class="state-layer-inner">
                     <slot name="active" v-if="isActive" />
                     <slot name="inactive" v-else />
                     <div v-if="showBadge && !badgeCount" class="badge"></div>
-                    <span v-if="!hideLabel">{{ content || label }}</span>
+                    <span>{{ content || label }}</span>
                     <div v-if="showBadge && badgeCount" class="badge count">
                         {{ badgeText }}
                     </div>
