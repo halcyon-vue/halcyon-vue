@@ -162,6 +162,10 @@ span {
     }
 }
 
+a {
+    text-decoration: none;
+}
+
 .in-drawer .badge {
     left: -6px;
     top: -8px;
