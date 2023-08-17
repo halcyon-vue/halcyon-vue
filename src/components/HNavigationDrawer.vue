@@ -81,6 +81,10 @@ nav {
         margin: 8px;
         border-width: 1px;
     }
+
+    &:deep(.navigation-button) {
+        margin-top: 8px;
+    }
 }
 
 .scrim {
