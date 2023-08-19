@@ -112,7 +112,7 @@ const clean = (s: string) => {
 
 const cleanedLength = (min: number, max: number) => (s: string) => {
   const len = clean(s).length
-  return len > min && len < max
+  return len >= min && len <= max
 }
 
 const contentLength = computed(() => clean(props.modelValue).length)
@@ -120,7 +120,7 @@ const contentLength = computed(() => clean(props.modelValue).length)
 const hasValidLength = computed(() =>
   props.maxLength || props.minLength
     ? cleanedLength(
-      props.minLength || 0,
+      props.minLength || -1,
       props.maxLength || Number.POSITIVE_INFINITY
     )(props.modelValue)
     : true
