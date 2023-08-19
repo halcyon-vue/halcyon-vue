@@ -61,7 +61,7 @@ nav {
     left: 0;
     top: 0;
     bottom: 0;
-    background-color: var(--halcyon-surface-container);
+    background-color: var(--halcyon-surface);
     width: 80px;
 
     padding: 12px 0;
