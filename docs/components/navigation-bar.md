@@ -2,7 +2,7 @@
 
 <script setup>
     import { ref } from 'vue'
-import { HNavigationBar, HNavigationButton, HSwitch } from '../../src/'
+import { HNavigationBar, HNavigationButton, HSwitch, HButton, HSnackbar, snackbar } from '../../src/'
 import Preview from '../Preview.vue'
 import CircleIcon from '~icons/mdi/circle'
 import CircleOutlineIcon from '~icons/mdi/checkbox-blank-circle-outline'
@@ -25,12 +25,16 @@ const options = {
 }
 
 const activeIcon = ref(0)
+
+const sendNotification = () => snackbar.send({ message: 'notification' })
 </script>
 
 <preview :options="options" v-slot="{ state }">
     <div class="preview-row">
         <label for="nav-bar-open">Show navigation bar?</label>
         <h-switch id="nav-bar-open" v-model="isOpen" />
+        <h-button kind="filled" content="Send notification" @click="sendNotification" />
+        <HSnackbar />
     </div>
     <h-navigation-bar v-if="isOpen" :hide-on-scroll="state.hideOnScroll">
         <h-navigation-button

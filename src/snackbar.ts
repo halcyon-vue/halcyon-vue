@@ -28,6 +28,13 @@ export const pushNotification = (notification: Notification) => {
     return currentNotifications.length
 }
 
+/**
+ * Adds a notification to the queue.
+ * @param {Notification} notification The notification to add.
+ * @returns {number} The new length of the queue.
+ */
+export const send = pushNotification
+
 // TODO: i really wish that i could just do, like,
 // export const popNotification = currentNotifications.shift, and pretend like
 // js is a real functional language but the tree shaker or something doesn't

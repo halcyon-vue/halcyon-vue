@@ -37,7 +37,7 @@ const showSnackbar = () => {
         labelError.value = 'Action label is required'
         return
     }
-    snackbar.pushNotification({
+    snackbar.send({
         message: message.value,
         action: includeAction.value ? {
             label: actionLabel.value,

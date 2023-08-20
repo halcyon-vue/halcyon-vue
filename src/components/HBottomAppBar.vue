@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useHideOnScroll } from '../common'
 import { useScroll } from '@vueuse/core'
-import { ref, watch, toRefs, useSlots } from 'vue';
+import { ref, watch, toRefs, useSlots, onMounted, onUnmounted } from 'vue';
 import HFloatingActionButton from './HFloatingActionButton.vue'
+import { state } from '../state';
 
 defineProps<{
     fabLabel: string
@@ -15,8 +16,16 @@ const emit = defineEmits<{
 const show = ref(true)
 const showIcons = ref(true)
 
+onMounted(() => {
+    state.bottomBarOpen = true
+})
+onUnmounted(() => {
+    state.bottomBarOpen = false
+})
+
 const onUp = () => {
     show.value = true
+    state.bottomBarOpen = true
     setTimeout(() => {
         showIcons.value = show.value
     }, 50)
@@ -25,6 +34,7 @@ const onUp = () => {
 useHideOnScroll({
     onUp,
     onDown: () => {
+        state.bottomBarOpen = false
         show.value = false
         showIcons.value = false
     }

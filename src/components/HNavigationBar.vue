@@ -1,16 +1,33 @@
 <script setup lang="ts">
-import { provide, ref } from 'vue';
+import { onMounted, onUnmounted, provide, ref } from 'vue';
 import { useHideOnScroll } from '../common'
+import { state } from '../state';
 
-defineProps<{
+const props = defineProps<{
     hideOnScroll?: boolean
 }>()
+
+onMounted(() => {
+    state.navbarOpen = true
+})
+
+onUnmounted(() => {
+    state.navbarOpen = false
+})
 
 const show = ref(true)
 
 useHideOnScroll({
-    onUp: () => { show.value = true }, 
-    onDown: () => { show.value = false }
+    onUp: () => {
+        show.value = true
+        if(!props.hideOnScroll) return
+        state.navbarOpen = true
+    }, 
+    onDown: () => {
+        show.value = false
+        if(!props.hideOnScroll) return
+        state.navbarOpen = false
+    }
 })
 
 provide('in bar', true)

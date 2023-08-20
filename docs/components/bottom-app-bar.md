@@ -3,7 +3,7 @@
 <script setup>
 import { ref } from 'vue'
 import Preview from '../Preview.vue'
-import { HBottomAppBar, HSwitch, HFloatingActionButton, HIconButton } from '../../src/'
+import { HBottomAppBar, HSwitch, HFloatingActionButton, HIconButton, snackbar, HButton, HSnackbar } from '../../src/'
 import Magnify from '~icons/mdi/magnify'
 import Delete from '~icons/mdi/delete-outline'
 import Archive from '~icons/mdi/archive-arrow-down'
@@ -12,12 +12,15 @@ import Plus from '~icons/mdi/plus'
 
 const isOpen = ref(false)
 const alert = (msg) => window.alert(msg)
+const sendNotification = () => snackbar.send({ message: 'notification' })
 </script>
 
 <preview :options="{}">
     <div class="preview-row">
         <label for="app-bar-open">Show bottom app bar?</label>
         <h-switch id="app-bar-open" v-model="isOpen" />
+        <h-button kind="filled" content="Send notification" @click="sendNotification" />
+        <HSnackbar />
     </div>
     <h-bottom-app-bar v-if="isOpen" fab-label="New" @fab-click="alert('hey')">
         <template #icon-1>

@@ -4,6 +4,7 @@ import { popNotification, currentNotifications, Notification, listen, unlisten }
 import HButton from './HButton.vue'
 import HIconButton from './HIconButton.vue'
 import CloseIcon from '~icons/mdi/close'
+import { state } from '../state'
 
 defineProps<{
     align?: 'center' | 'left'
@@ -52,7 +53,7 @@ onUnmounted(() => unlisten(listener))
 
 <template>
     <Teleport to="body">
-        <div id="snackbar-container" role="alert" :class="[align]">
+        <div id="snackbar-container" role="alert" :class="[align, { 'bottom-bar-open': state.bottomBarOpen, 'nav-bar-open': state.navbarOpen }]">
             <Transition>
                 <div v-if="currentNotification" class="notification" :class="{ multiline: currentNotification.multiline }">
                     <span class="message">
@@ -74,6 +75,9 @@ onUnmounted(() => unlisten(listener))
 @use "../util";
 
 #snackbar-container {
+    transition-property: opacity, transform, bottom;
+    transition-duration: util.$duration-short-4;
+    transition-timing-function: util.$te-standard;
     z-index: var(--halcyon-snackbar-z);
     position: fixed;
     bottom: 24px;
@@ -85,6 +89,10 @@ onUnmounted(() => unlisten(listener))
 
     &.left {
         justify-content: start;
+    }
+
+    &.bottom-bar-open, &.nav-bar-open {
+        bottom: 104px;
     }
 }
 
@@ -121,9 +129,6 @@ onUnmounted(() => unlisten(listener))
 
 .v-enter-active,
 .v-leave-active {
-    transition-property: opacity, transform;
-    transition-duration: util.$duration-short-4;
-    transition-timing-function: util.$te-standard;
     transform-origin: center bottom;
 }
 
