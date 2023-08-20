@@ -115,7 +115,6 @@ const clean = (s: string) => {
 }
 
 const cleanedLength = (min: number, max: number) => (s: string) => {
-  console.log(clean(s))
   const len = clean(s).length
   return len >= min && len <= max
 }
