@@ -108,13 +108,14 @@ const _rows = computed(() => props.rows || 3)
 /* Error state and length checks */
 const clean = (s: string) => {
   if(typeof s === 'string') {
-    s.trim().split(/\s+/).join(' ')
+    return s.trim().split(/\s+/).join(' ')
   } else {
     return ''
   }
 }
 
 const cleanedLength = (min: number, max: number) => (s: string) => {
+  console.log(clean(s))
   const len = clean(s).length
   return len >= min && len <= max
 }
