@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Component, computed, inject } from 'vue';
+import { type Component, computed, inject } from 'vue';
 
 const props = defineProps<{
     content?: string
