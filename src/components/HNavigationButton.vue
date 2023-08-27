@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, computed, Component } from 'vue';
+import { inject, computed, type Component } from 'vue';
 import HNavigationButtonInner from './HNavigationButtonInner.vue'
 import HTooltip from './HTooltip.vue';
 

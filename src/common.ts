@@ -1,5 +1,5 @@
 import { useScroll } from '@vueuse/core'
-import { Component, toRefs, watch } from 'vue'
+import { type Component, toRefs, watch } from 'vue'
 
 const LINK_COMPONENTS = ['router-link', 'nuxt-link', 'a', 'RouterLink', 'NuxtLink', 'A']
 

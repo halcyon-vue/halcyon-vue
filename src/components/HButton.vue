@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Component, useSlots } from 'vue'
+import { type Component, useSlots } from 'vue'
 
 const props = defineProps<{
     // The kind of button to render.

@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { isLink } from '../common'
 import { MenuItem } from '@headlessui/vue'
-import { Component } from 'vue';
+import type { Component } from 'vue';
 import MenuRight from '~icons/mdi/menu-right'
 
 const props = defineProps<{

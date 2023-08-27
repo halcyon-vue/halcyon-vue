@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HTooltip from './HTooltip.vue';
-import { Component, computed, ref } from 'vue'
+import { type Component, computed, ref } from 'vue'
 
 const props = defineProps<{
   kind?: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
