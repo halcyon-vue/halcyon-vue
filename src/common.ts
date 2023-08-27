@@ -1,12 +1,13 @@
-import { MaybeComputedElementRef, tryOnMounted, unrefElement, useEventListener, useResizeObserver, useScroll } from '@vueuse/core'
-import { toRefs, watch, ref } from 'vue'
+import { useScroll } from '@vueuse/core'
+import { Component, toRefs, watch } from 'vue'
 
-export const navButtonComponent = /* @__PURE__ */ (isLink: boolean, useRouterLink: boolean) => {
-    if (isLink) {
-        return useRouterLink ? 'router-link' : 'a'
-    }
-    return 'button'
-}
+const LINK_COMPONENTS = ['router-link', 'nuxt-link', 'a', 'RouterLink', 'NuxtLink', 'A']
+
+export const isLink = /* @__PURE__ */ (component: string | Component) => {
+    const name = typeof component === 'string' ? component : component.name
+
+    return LINK_COMPONENTS.includes(name)
+} 
 
 interface HideOnScrollOptions {
     onUp: () => any

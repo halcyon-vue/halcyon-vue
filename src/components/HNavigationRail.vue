@@ -3,13 +3,22 @@ import HNavigationDrawer from './HNavigationDrawer.vue'
 import HIconButton from './HIconButton.vue'
 import HFloatingActionButton from './HFloatingActionButton.vue'
 import MenuIcon from '~icons/mdi/menu'
-import { provide, ref } from 'vue'
+import { onMounted, onUnmounted, provide, ref } from 'vue'
+import { state } from '../state'
 defineProps<{
     align?: 'top' | 'center' | 'bottom'
     hasDrawer?: boolean
     hasFab?: boolean
     fabLabel?: string
 }>()
+
+onMounted(() => {
+    state.railOpen = true
+})
+
+onUnmounted(() => {
+    state.railOpen = false
+})
 
 const emit = defineEmits<{
     (e: 'fab-click', event: Event): void

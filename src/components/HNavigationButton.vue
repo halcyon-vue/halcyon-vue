@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue';
+import { inject, computed, Component } from 'vue';
 import HNavigationButtonInner from './HNavigationButtonInner.vue'
 import HTooltip from './HTooltip.vue';
 
 const props = defineProps<{
     content?: string
     label: string
-    useRouterLink?: boolean
-    to?: string
+    as?: string | Component
     hideLabel?: boolean
     isActive?: boolean
     showBadge?: boolean
@@ -37,13 +36,13 @@ const hideTooltip = computed(() => props.noTooltip || inDrawer)
         v-if="hideTooltip"
         :content="content"
         :label="label"
-        :use-router-link="useRouterLink"
-        :to="to"
+        :as="as"
         :hide-label="hideLabel"
         :is-active="isActive"
         :show-badge="showBadge"
         :badge-count="badgeCount"
         :no-tooltip="hideTooltip"
+        v-bind="$attrs"
     >
         <template #active>
             <slot name="active" />
@@ -56,13 +55,13 @@ const hideTooltip = computed(() => props.noTooltip || inDrawer)
         <h-navigation-button-inner
             :content="content"
             :label="label"
-            :use-router-link="useRouterLink"
-            :to="to"
+            :as="as"
             :hide-label="hideLabel"
             :is-active="isActive"
             :show-badge="showBadge"
             :badge-count="badgeCount"
             :no-tooltip="hideTooltip"
+            v-bind="$attrs"
         >
             <template #active>
                 <slot name="active" />

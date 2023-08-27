@@ -3,7 +3,7 @@
 <script setup>
 import { ref } from 'vue'
 import Preview from '../Preview.vue'
-import { HSwitch, HNavigationRail, HFloatingActionButton, HNavigationButton } from '../../src/'
+import { HSwitch, HNavigationRail, HFloatingActionButton, HNavigationButton, HButton, HSnackbar, snackbar } from '../../src/'
 import MapIcon from '~icons/mdi/map'
 import HomeCityIcon from '~icons/mdi/home-city-outline'
 import BookmarkIcon from '~icons/mdi/bookmark-outline'
@@ -44,12 +44,16 @@ const options = {
         label: 'Has FAB'
     }
 }
+
+const sendNotification = () => snackbar.send({ message: 'notification' })
 </script>
 
 <preview :options="options" v-slot="{ state }">
     <div class="preview-row">
         <label for="rail-switch">Show rail</label>
         <h-switch v-model="show" id="rail-switch" />
+        <h-button kind="filled" content="Send notification" @click="sendNotification" />
+        <HSnackbar />
     </div>
     <h-navigation-rail
         v-if="show"

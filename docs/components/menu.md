@@ -102,10 +102,8 @@ defineProps<{
     onClick?: () => void
     // Whether this button has a submenu.
     hasSubmenu?: boolean
-    // Whether this button should be a link.
-    isLink?: boolean
-    // Whether the link, specified with the above prop, should use <router-link>.
-    useRouterLink?: boolean
+    // Which element to render the button as. Defaults to `button`.
+    as?: string | Component
     // Whether this menu is `disabled`.
     disabled?: boolean
 }>()

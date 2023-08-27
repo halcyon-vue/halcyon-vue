@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HTooltip from './HTooltip.vue';
-import { computed, ref } from 'vue'
+import { Component, computed, ref } from 'vue'
 
 const props = defineProps<{
   kind?: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
@@ -9,9 +9,7 @@ const props = defineProps<{
   toggleable?: boolean,
   disabled?: boolean,
   // Which element to render the button as.
-  as?: 'button' | 'a' | 'router-link',
-  // If the button is a link, where to link to.
-  to?: string
+  as?: string | Component,
   // What the toggle state defaults to.
   checked?: boolean
   modelValue?: boolean
@@ -19,7 +17,7 @@ const props = defineProps<{
   noTooltip?: boolean
 }>()
 
-if (props.toggleable && (props.as === 'a' || props.as === 'router-link')) {
+if (props.toggleable && (props.as === 'a' || props.as === 'router-link' || props.as === 'nuxt-link')) {
   console.error('HIconButton: Toggleable buttons cannot be links.')
 }
 
@@ -50,7 +48,7 @@ const toggle = () => {
       selected,
       toggleable: _toggleable,
       [kind || 'standard']: true,
-    }" @click="toggle" :role="role" :to="as === 'router-link' ? to : undefined" :href="as === 'a' ? to : undefined" v-bind="$attrs">
+    }" @click="toggle" :role="role" v-bind="$attrs">
       <span class="state-layer">
         <slot v-if="!toggleable" />
         <slot name="selected" v-if="toggleable && selected" />

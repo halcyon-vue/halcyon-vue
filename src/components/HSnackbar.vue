@@ -49,11 +49,17 @@ const action = () => {
 onMounted(() => listen(listener))
 onUnmounted(() => unlisten(listener))
 
+const stateClasses = {
+    'bottom-bar-open': state.bottomBarOpen,
+    'nav-bar-open': state.navbarOpen,
+    'rail-open': state.railOpen
+}
+
 </script>
 
 <template>
     <Teleport to="body">
-        <div id="snackbar-container" role="alert" :class="[align, { 'bottom-bar-open': state.bottomBarOpen, 'nav-bar-open': state.navbarOpen }]">
+        <div id="snackbar-container" role="alert" :class="[align, stateClasses]">
             <Transition>
                 <div v-if="currentNotification" class="notification" :class="{ multiline: currentNotification.multiline }">
                     <span class="message">
@@ -75,7 +81,7 @@ onUnmounted(() => unlisten(listener))
 @use "../util";
 
 #snackbar-container {
-    transition-property: opacity, transform, bottom;
+    transition-property: bottom;
     transition-duration: util.$duration-short-4;
     transition-timing-function: util.$te-standard;
     z-index: var(--halcyon-snackbar-z);
@@ -93,6 +99,10 @@ onUnmounted(() => unlisten(listener))
 
     &.bottom-bar-open, &.nav-bar-open {
         bottom: 104px;
+    }
+
+    &.rail-open {
+        left: 102px;
     }
 }
 
@@ -129,6 +139,9 @@ onUnmounted(() => unlisten(listener))
 
 .v-enter-active,
 .v-leave-active {
+    transition-property: opacity, transform;
+    transition-duration: util.$duration-short-4;
+    transition-timing-function: util.$te-standard;
     transform-origin: center bottom;
 }
 

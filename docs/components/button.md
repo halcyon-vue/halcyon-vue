@@ -95,17 +95,15 @@ A common button, ideal for your app's most basic actions.
 defineProps<{
     // The kind of button to render.
     // See the above preview for how each renders.
-    kind: 'elevated' | 'filled' | 'filled-tonal' | 'outline' | 'text',
+    kind: 'elevated' | 'filled' | 'filled-tonal' | 'outline' | 'text'
     // The text content to include in the button.
-    content?: string,
+    content?: string
     // The label to use for accessibility.
     // If none is provided, the content will be used.
     label?: string,
-    disabled?: boolean,
+    disabled?: boolean
     // Which element to render the button as.
-    as?: 'button' | 'a' | 'router-link',
-    // If the button is a link, where to link to.
-    to?: string
+    as?: string | Component
 
     // See the `Pitfalls` section of the documentation.
     addEmptyPadding?: boolean

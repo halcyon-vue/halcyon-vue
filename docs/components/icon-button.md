@@ -93,23 +93,19 @@ Icon buttons help people take supplementary actions with a single tap.
 
 ```ts
 defineProps<{
-    // The kind of button to render.
-    // See the above preview for how each one renders.
-    kind: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
-    // The label to use for accessibility.
-    label: string,
-    // Whether this is a toggleable icon button.
-    toggleable?: boolean,
-    // Whether this button is disabled.
-    disabled?: boolean,
-    // Which element to render the button as.
-    as?: 'button' | 'a' | 'router-link',
-    // If the button is a link, where to link to.
-    to?: string
-    // What the toggle state defaults to.
-    checked?: boolean
+  kind?: 'filled' | 'filled-tonal' | 'outlined' | 'standard',
+  // The label to use for accessibility.
+  label: string
+  toggleable?: boolean
+  disabled?: boolean
+  // Which element to render the button as.
+  as?: string | Component
+  // What the toggle state defaults to.
+  checked?: boolean
+  // Whether to disable the tooltip.
+  noTooltip?: boolean
 
-    modelValue?: boolean
+  modelValue?: boolean
 }>()
 ```
 

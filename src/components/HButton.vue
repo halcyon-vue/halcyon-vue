@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSlots } from 'vue'
+import { Component, useSlots } from 'vue'
 
 const props = defineProps<{
     // The kind of button to render.
@@ -11,9 +11,7 @@ const props = defineProps<{
     label?: string,
     disabled?: boolean,
     // Which element to render the button as.
-    as?: 'button' | 'a' | 'router-link',
-    // If the button is a link, where to link to.
-    to?: string
+    as?: string | Component,
 
     addEmptyPadding?: boolean
     removeEmptyPadding?: boolean
@@ -30,8 +28,7 @@ const icon = props.removeEmptyPadding || (slots.default && !props.addEmptyPaddin
         :class="[kind, { icon }, 'button']"
         :aria-label="label || content"
         :disabled="disabled"
-        :to="as === 'router-link' ? to : undefined"
-        :href="as === 'a' ? to : undefined"
+        v-bind="$attrs"
     >
         <slot/>
         <span v-if="content">{{ content }}</span>

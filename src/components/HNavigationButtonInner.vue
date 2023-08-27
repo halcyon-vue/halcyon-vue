@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue';
+import { Component, computed, inject } from 'vue';
 
 const props = defineProps<{
     content?: string
     label: string
-    useRouterLink?: boolean
-    to?: string
+    as?: string | Component
     hideLabel?: boolean
     isActive?: boolean
     showBadge?: boolean
@@ -35,31 +34,37 @@ const _hideLabel = computed(() => {
 </script>
 
 <template>
-    
-        <component :is="useRouterLink ? 'router-link' : 'a'" :aria-label="label" class="navigation-button"
-            :class="{ active: isActive, 'in-drawer': inDrawer, 'label-hidden': _hideLabel }" :href="to" :to="to" @click="handleClick" tabindex=0>
-            <div class="state-layer-outer" v-if="inDrawer">
-                <div class="state-layer-inner">
-                    <slot name="active" v-if="isActive" />
-                    <slot name="inactive" v-else />
-                    <div v-if="showBadge && !badgeCount" class="badge"></div>
-                    <span>{{ content || label }}</span>
-                    <div v-if="showBadge && badgeCount" class="badge count">
-                        {{ badgeText }}
-                    </div>
-                </div>
-            </div>
-            <div class="state-layer-outer" v-else>
-                <div class="state-layer-inner" aria-hidden>
-                    <slot name="active" v-if="isActive" />
-                    <slot name="inactive" v-else />
-                </div>
-                <div v-if="showBadge" :class="{ 'count': badgeCount }" class="badge">
+    <component
+        :is="as || 'a'"
+        :aria-label="label"
+        class="navigation-button"
+        :class="{ active: isActive, 'in-drawer': inDrawer, 'label-hidden': _hideLabel }"
+        @click="handleClick"
+        tabindex=0
+        v-bind="$attrs"
+    >
+        <div class="state-layer-outer" v-if="inDrawer">
+            <div class="state-layer-inner">
+                <slot name="active" v-if="isActive" />
+                <slot name="inactive" v-else />
+                <div v-if="showBadge && !badgeCount" class="badge"></div>
+                <span>{{ content || label }}</span>
+                <div v-if="showBadge && badgeCount" class="badge count">
                     {{ badgeText }}
                 </div>
             </div>
-            <span v-if="!hideLabel && !inDrawer">{{ content || label }}</span>
-        </component>
+        </div>
+        <div class="state-layer-outer" v-else>
+            <div class="state-layer-inner" aria-hidden>
+                <slot name="active" v-if="isActive" />
+                <slot name="inactive" v-else />
+            </div>
+            <div v-if="showBadge" :class="{ 'count': badgeCount }" class="badge">
+                {{ badgeText }}
+            </div>
+        </div>
+        <span v-if="!hideLabel && !inDrawer">{{ content || label }}</span>
+    </component>
 </template>
 
 <style scoped lang="scss">

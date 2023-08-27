@@ -1,20 +1,20 @@
 <!-- eslint-disable func-call-spacing -->
 <script setup lang="ts">
-import { navButtonComponent } from '../common'
+import { isLink } from '../common'
 import { MenuItem } from '@headlessui/vue'
+import { Component } from 'vue';
 import MenuRight from '~icons/mdi/menu-right'
 
 const props = defineProps<{
     label: string
     onClick?: () => void
     hasSubmenu?: boolean
-    isLink?: boolean
-    useRouterLink?: boolean
+    as: string | Component
     disabled?: boolean
-    to?: string
+    
 }>()
 const handleClick = (e: Event, close: () => any) => {
-    if(props.isLink) return
+    if(isLink(props.as)) return
     e.preventDefault()
     if(props.hasSubmenu) return
     if (props.onClick) {
@@ -34,10 +34,9 @@ const handleClick = (e: Event, close: () => any) => {
         <component
             class="menu-item"
             :class="{ active, disabled }"
-            :is="navButtonComponent(isLink, useRouterLink)"
+            :is="as"
             @click="e => handleClick(e, close)"
-            :to="to"
-            :href="to"
+            v-bind="$attrs"
         >
             <slot name="leading" />
             <span class="label">{{ label }}</span>

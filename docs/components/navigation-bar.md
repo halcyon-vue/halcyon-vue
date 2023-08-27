@@ -156,10 +156,9 @@ defineProps<{
     label: string
     // The content to display, if different from the label.
     content?: string
-    // Whether this link should use a `router-link`.
-    useRouterLink?: boolean
-    // The location to link to.
-    to?: string
+    // Which element to render the button as. Should be a link-like element.
+    // Defaults to `a`.
+    as?: string | Component
     // Whether the label should be hidden.
     hideLabel?: boolean
     // Whether the button links to the location that the user is currently at.
