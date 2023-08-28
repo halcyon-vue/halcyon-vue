@@ -163,7 +163,7 @@ header {
     grid-area: trailing;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
 
     color: var(--halcyon-on-surface-variant);
 

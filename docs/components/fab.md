@@ -52,7 +52,7 @@ const previewOptions = {
 
 <preview :options="previewOptions" v-slot="{ state }">
     <div
-        style="display: flex; flex-direction: column; align-items: end;"
+        style="display: flex; flex-direction: column; align-items: flex-end;"
         v-if="state.example === 'small'"
     >
         <h-floating-action-button kind="small" :color="state.color">
@@ -89,7 +89,7 @@ const previewOptions = {
 
 ```html
 <div
-    style="display: flex; flex-direction: column; align-items: end;"
+    style="display: flex; flex-direction: column; align-items: flex-end;"
     v-if="state.example === 'small'"
 >
     <h-floating-action-button kind="small" :color="state.color">

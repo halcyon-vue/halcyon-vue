@@ -61,7 +61,7 @@ h2 {
 .image-card {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .text-card {
