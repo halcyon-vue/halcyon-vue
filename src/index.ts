@@ -31,6 +31,8 @@ import HNavigationDrawer from './components/HNavigationDrawer.vue'
 // @ts-ignore
 import HNavigationRail from './components/HNavigationRail.vue'
 // @ts-ignore
+import HScaffold from "./components/HScaffold.vue";
+// @ts-ignore
 import HSegmentedButton from './components/HSegmentedButton.vue'
 // @ts-ignore
 import HSelect from './components/HSelect.vue'
@@ -64,6 +66,7 @@ export {
     HNavigationButton,
     HNavigationDrawer,
     HNavigationRail,
+    HScaffold,
     HSegmentedButton,
     HSelect,
     HSnackbar,
