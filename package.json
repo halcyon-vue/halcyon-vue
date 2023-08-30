@@ -25,6 +25,11 @@
       "require": "./dist/plugin.cjs",
       "types": "./dist/plugin.d.ts"
     },
+    "./nuxt": {
+      "import": "./dist/nuxt.js",
+      "require": "./dist/nuxt.cjs",
+      "types": "./dist/nuxt.d.ts"
+    },
     "./style": "./dist/style.css"
   },
   "scripts": {

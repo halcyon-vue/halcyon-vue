@@ -17,7 +17,8 @@ export default defineConfig({
       // Could also be a dictionary or array of multiple entry points
       entry: {
         main: resolve(__dirname, 'src/index.ts'),
-        plugin: resolve(__dirname, 'src/plugin.ts')
+        plugin: resolve(__dirname, 'src/plugin.ts'),
+        nuxt: resolve(__dirname, 'src/nuxt.ts')
       },
       name: 'halcyon-vue',
       // the proper extensions will be added
@@ -34,7 +35,7 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
-      external: ['vue', '@headlessui/vue', '@vueuse/components', '@vueuse/core'],
+      external: ['vue', '@headlessui/vue', '@vueuse/components', '@vueuse/core', '@nuxt/kit'],
       output: {
         // Provide global variables to use in the UMD build
         // for externalized deps
