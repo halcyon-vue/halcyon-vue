@@ -242,14 +242,43 @@ const themeToVars = (scheme: ColorScheme, palettes: Palettes, kind: 'dark' | 'li
     ].join('\n')
 }
 
+const COMMON_CSS = `
+:root {
+    --halcyon-fab-z: 45;
+    --halcyon-modal-z: 50;
+    --halcyon-snackbar-z: 100;
+    --halcyon-menu-z: 200;
+}
+`
+
+export const makeTheme = <Theme extends HalcyonTheme>(options: HalcyonPluginOptions<Theme> = {}) => {
+    const theme = options.theme ?? defaultTheme
+
+    const lightTheme =
+        `:root {\n${themeToVars(theme.schemes.light, theme.palettes, 'light')}\n}`
+
+    const darkVars = themeToVars(theme.schemes.dark, theme.palettes, 'dark')
+    let darkTheme: string
+    if (options.darkMode === 'class') {
+        let className = options.darkModeClass ?? DEFAULT_DARK_MODE_CLASS
+        // be kind and remove the dot if it's there
+        if (className.startsWith('.')) {
+            className = className.slice(1)
+        }
+        darkTheme = `.${className} {\n${darkVars}\n}`
+    } else {
+        darkTheme = `@media (prefers-color-scheme: dark) {\n:root {\n${darkVars}\n}\n}`
+    }
+
+    return COMMON_CSS + '\n' + lightTheme + '\n' + darkTheme
+}
+
 /**
  * Create a Halcyon plugin instance.
  * @param options The options to use.
  * @returns The plugin to be passed to Vite.
  */
 export const Halcyon = <Theme extends HalcyonTheme>(options: HalcyonPluginOptions<Theme> = {}): Plugin[] => {
-    const theme = options.theme ?? defaultTheme
-
     const themeMID = 'halcyon:theme.css'
     const themeRMID = '\0' + themeMID
 
@@ -276,36 +305,11 @@ export const Halcyon = <Theme extends HalcyonTheme>(options: HalcyonPluginOption
         load(id) {
             if (id === resetRMID) {
                 return reset
-            } else
-                if (id === baseRMID) {
-                    return baseTheme
-                } else if (id === themeRMID) {
-                    const common = `
-                    :root {
-                        --halcyon-fab-z: 45;
-                        --halcyon-modal-z: 50;
-                        --halcyon-snackbar-z: 100;
-                        --halcyon-menu-z: 200;
-                    }
-                    `
-
-                    const lightTheme = `:root {\n${themeToVars(theme.schemes.light, theme.palettes, 'light')}\n}`
-
-                    const darkVars = themeToVars(theme.schemes.dark, theme.palettes, 'dark')
-                    let darkTheme: string
-                    if (options.darkMode === 'class') {
-                        let className = options.darkModeClass ?? DEFAULT_DARK_MODE_CLASS
-                        // be kind and remove the dot if it's there
-                        if (className.startsWith('.')) {
-                            className = className.slice(1)
-                        }
-                        darkTheme = `.${className} {\n${darkVars}\n}`
-                    } else {
-                        darkTheme = `@media (prefers-color-scheme: dark) {\n:root {\n${darkVars}\n}\n}`
-                    }
-
-                    return common + '\n' + lightTheme + '\n' + darkTheme
-                }
+            } else if (id === baseRMID) {
+                return baseTheme
+            } else if (id === themeRMID) {
+                return makeTheme(options)
+            }
         },
     })
 
