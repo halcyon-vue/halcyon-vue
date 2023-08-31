@@ -7,7 +7,7 @@ import {
     DialogTitle
 } from '@headlessui/vue'
 import { useSwipe } from '@vueuse/core';
-import { provide, watch } from 'vue';
+import {provide, ref, watch} from 'vue';
 
 const props = defineProps<{
     title?: string
@@ -17,9 +17,11 @@ const props = defineProps<{
 
 const emit = defineEmits<{ (e: 'update:open', modelValue: boolean): any; }>()
 
+const mask = ref<HTMLDivElement>()
+
 const close = () => emit('update:open', false)
 
-const { isSwiping, direction } = useSwipe(document)
+const { isSwiping, direction } = useSwipe(mask)
 
 watch(isSwiping, (isSwiping) => {
     if (props.static) return
@@ -36,6 +38,7 @@ provide('in drawer', true);
 </script>
 
 <template>
+    <div class="drawer-swiping-mask" ref="mask"/>
     <Teleport to="body" v-if="static">
         <nav><slot /></nav>
     </Teleport>
@@ -125,5 +128,10 @@ nav {
 
 .scrim-to {
     opacity: 1;
+}
+
+.drawer-swiping-mask{
+    position: fixed;
+    inset: 0;
 }
 </style>
