@@ -7,7 +7,7 @@ export const isLink = /* @__PURE__ */ (component: string | Component) => {
     const name = typeof component === 'string' ? component : component.name
 
     return LINK_COMPONENTS.includes(name)
-} 
+}
 
 interface HideOnScrollOptions {
     onUp: () => any
@@ -16,12 +16,12 @@ interface HideOnScrollOptions {
 
 export const useHideOnScroll = /* @__PURE__ */ ({ onUp, onDown }: HideOnScrollOptions) => {
     const scroll = useScroll(
-        document,
+        typeof document !== 'undefined' ? document : undefined, // ssr compatible
         { throttle: 300, eventListenerOptions: true }
     )
 
     const { top: up, bottom: down } = toRefs(scroll.directions)
-    
+
     watch([up, down], ([up, down]) => {
         if (up) onUp()
         if (down) onDown()
