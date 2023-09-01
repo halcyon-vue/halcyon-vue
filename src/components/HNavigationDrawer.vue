@@ -38,7 +38,9 @@ provide('in drawer', true);
 </script>
 
 <template>
-    <div class="drawer-swiping-mask" ref="mask"/>
+    <Teleport to="body">
+      <div class="drawer-swiping-mask" ref="mask"/>
+    </Teleport>
     <Teleport to="body" v-if="static">
         <nav><slot /></nav>
     </Teleport>
