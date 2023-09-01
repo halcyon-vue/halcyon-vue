@@ -55,7 +55,7 @@ const _kind = computed(() => {
         <div class="trailing">
             <slot name="trailing" />
         </div>
-        
+
     </header>
 </template>
 
@@ -155,7 +155,7 @@ header {
 .leading {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     margin-left: 8px;
 }
 
