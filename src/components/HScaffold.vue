@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, useSlots} from "vue";
+import {computed, useSlots, watchEffect} from "vue";
 import {useMediaQuery} from "@vueuse/core";
 import HFloatingActionButton from "./HFloatingActionButton.vue";
 import HNavigationDrawer from "./HNavigationDrawer.vue";
