@@ -1,7 +1,8 @@
-import { addTemplate, defineNuxtModule } from '@nuxt/kit'
+import {addTemplate, defineNuxtModule, addComponent, createResolver} from '@nuxt/kit'
 import { HalcyonPluginOptions, HalcyonTheme, makeTheme } from './plugin'
 import baseTheme from './base'
 import reset from './reset'
+import * as components from './index'
 
 export interface HalcyonNuxtOptions {
   halcyon?: HalcyonPluginOptions<HalcyonTheme>,
@@ -18,6 +19,7 @@ export default defineNuxtModule<HalcyonNuxtOptions>({
     }
   },
   setup(moduleOptions, nuxt) {
+    const resolver = createResolver(import.meta.url)
     const theme = makeTheme(moduleOptions.halcyon ?? {})
 
     addTemplate({
@@ -43,5 +45,12 @@ export default defineNuxtModule<HalcyonNuxtOptions>({
     nuxt.options.css.push('#build/halcyon-theme.css')
     nuxt.options.css.push('#build/halcyon-base.css')
     nuxt.options.css.push('#build/halcyon-reset.css')
+
+    for (const component in components) {
+      addComponent({
+        name: component,
+        filePath: resolver.resolve(`./components/${component}.vue`)
+      })
+    }
   }
 })
