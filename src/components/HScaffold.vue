@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import {computed, useSlots} from "vue";
+import {useMediaQuery} from "@vueuse/core";
+import HFloatingActionButton from "./HFloatingActionButton.vue";
+import HNavigationDrawer from "./HNavigationDrawer.vue";
 import HNavigationBar from "./HNavigationBar.vue";
 import HNavigationRail from "./HNavigationRail.vue";
-import HNavigationDrawer from "./HNavigationDrawer.vue";
-import HFloatingActionButton from "./HFloatingActionButton.vue";
 
 type SizeClass = 'compact' | 'medium' | 'expanded'
 type Pane = 1 | 2
@@ -11,8 +13,8 @@ const props = withDefaults(defineProps<{
   initialSizeClass?: SizeClass | 'auto',
   initialPanes?: Pane | 'auto'
   floatingActionButtonLabel?: string,
-  sizeClass?: SizeClass,
-  panes?: Pane,
+  sizeClass: SizeClass,
+  panes: Pane,
 }>(), {
   initialSizeClass: 'auto',
   initialPanes: 'auto',
@@ -34,60 +36,35 @@ defineSlots<{
 
 const slots = useSlots()
 
-function updateState() {
-  updateSizeClass()
-  nextTick(updatePanes)
-}
-
-function updateSizeClass() {
-  if (props.initialSizeClass !== 'auto') {
-    emits('update:sizeClass', props.initialSizeClass)
-    return
+const autoLayout = computed<SizeClass>(() => {
+  if (props.initialSizeClass != "auto") {
+    return props.initialSizeClass
   }
 
-  emits('update:sizeClass', window.matchMedia("(min-width: 840px)").matches ? 'expanded' :
-      window.matchMedia("(min-width: 600px)").matches ? 'medium' : 'compact')
-}
-
-function updatePanes() {
-  if (props.initialPanes !== 'auto') {
-    emits('update:panes', props.initialPanes)
-    return
-  }
-
-  emits('update:panes', props.sizeClass === 'expanded' ? 2 : 1)
-}
-
-const matchMedia = window.matchMedia("(min-width: 600px) and (max-width: 840px)")
-
-function registerMediaListener() {
-  if (!window.matchMedia) return
-
-  if (matchMedia)
-    if ('addEventListener' in matchMedia) {
-      matchMedia.addEventListener('change', updateState)
-    } else {
-      // @ts-expect-error deprecated API
-      matchMedia.addListener(updateState)
-    }
-}
-
-function cleanup() {
-  if (!window.matchMedia) return
-
-  if ('removeEventListener' in matchMedia) {
-    matchMedia.removeEventListener('change', updateState)
+  if (useMediaQuery("(max-width: 600px)").value) {
+    return 'compact'
+  } else if (useMediaQuery("(max-width: 840px)").value) {
+    return 'medium'
   } else {
-    // @ts-expect-error deprecated API
-    mediaQuery.removeListener(updateState)
+    return 'expanded'
   }
-}
-
-onMounted(() => {
-  registerMediaListener()
-  updateState()
 })
-onUnmounted(cleanup)
+
+const autoPanes = computed<Pane>(() => {
+  if (props.initialPanes != "auto") {
+    return props.initialPanes
+  }
+
+  return autoLayout.value === 'expanded' ? 2 : 1
+})
+
+watchEffect(() => {
+  emits('update:sizeClass', autoLayout.value)
+})
+
+watchEffect(() => {
+  emits('update:panes', autoPanes.value)
+})
 
 const mainPadding = computed(() => {
   let paddingTop = 0
@@ -127,7 +104,8 @@ const mainPadding = computed(() => {
 
     <h-floating-action-button v-if="'floatingActionButtonIcon' in $slots || floatingActionButtonLabel"
                               class="fab-btn"
-                              kind="small" label="">
+                              kind="small"
+                              :label="floatingActionButtonLabel">
       <slot name="floatingActionButtonIcon"/>
     </h-floating-action-button>
   </template>
