@@ -164,7 +164,7 @@ const mainPadding = computed(() => {
 
 <style scoped>
 .main {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   padding: v-bind(mainPadding);
 }
@@ -178,6 +178,11 @@ const mainPadding = computed(() => {
   position: fixed;
   bottom: 80px;
   right: 0;
+}
+
+.pane {
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 </style>
