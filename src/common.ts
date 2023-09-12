@@ -15,6 +15,8 @@ interface HideOnScrollOptions {
 }
 
 export const useHideOnScroll = /* @__PURE__ */ ({ onUp, onDown }: HideOnScrollOptions) => {
+    if (typeof window === 'undefined') return
+
     const scroll = useScroll(
         document,
         { throttle: 300, eventListenerOptions: true }

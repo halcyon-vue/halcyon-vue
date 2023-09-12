@@ -19,7 +19,7 @@ const emit = defineEmits<{ (e: 'update:open', modelValue: boolean): any; }>()
 
 const close = () => emit('update:open', false)
 
-const { isSwiping, direction } = useSwipe(document)
+const { isSwiping, direction } = useSwipe(typeof window === 'undefined' ? null : document)
 
 watch(isSwiping, (isSwiping) => {
     if (props.static) return
