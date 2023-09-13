@@ -72,7 +72,7 @@ export default defineNuxtModule<HalcyonNuxtOptions>({
     }
 
     componentNames.forEach(name => {
-      addComponent({ name, filePath: 'halcyon-vue' })
+      addComponent({ name, export: name, filePath: 'halcyon-vue' })
     })
 
     nuxt.options.css.push('halcyon-vue/style')
