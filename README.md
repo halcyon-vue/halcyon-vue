@@ -2,6 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/halcyon-vue?style=flat-square)](https://www.npmjs.com/package/halcyon-vue)
 [![docs](https://img.shields.io/badge/docs-green?style=flat-square)][halcyon-docs]
+[![Discord](https://img.shields.io/discord/1151600777761140876)][discord]
+
 
 A [Material You][m3] plugin and component library for [Vite] / [Vue 3][v3].
 
@@ -115,3 +117,4 @@ use, and it's the only thing tested with.
 [license]: https://github.com/halcyon-vue/halcyon-vue/blob/main/LICENSE
 [halcyon-docs]: https://halcyon-vue.github.io/halcyon-vue
 [unplugin-icons]: https://github.com/antfu/unplugin-icons
+[discord]: https://discord.gg/HEVfNXAu2d
