@@ -43,8 +43,8 @@ const toggle = () => {
 </script>
 
 <template>
-  <component :content="label" :is="noTooltip ? 'template' : HTooltip">
-    <component :is="as || 'button'" :aria-label="label" :disabled="disabled" class="h-icon-button" :class="{      
+  <component :content="label" :is="noTooltip ? 'div' : HTooltip">
+    <component :is="as || 'button'" :aria-label="label" :disabled="disabled" class="h-icon-button" :class="{
       selected,
       toggleable: _toggleable,
       [kind || 'standard']: true,
