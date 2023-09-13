@@ -86,7 +86,7 @@ section {
     flex: 1;
 
     &.top {
-        justify-content: start;
+        justify-content: flex-start;
     }
 
     &.center {

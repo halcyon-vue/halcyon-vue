@@ -94,7 +94,7 @@ const stateClasses = {
     justify-content: center;
 
     &.left {
-        justify-content: start;
+        justify-content: flex-start;
     }
 
     &.bottom-bar-open, &.nav-bar-open {
