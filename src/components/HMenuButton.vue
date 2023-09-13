@@ -5,14 +5,19 @@ import { MenuItem } from '@headlessui/vue'
 import type { Component } from 'vue';
 import MenuRight from '~icons/mdi/menu-right'
 
-const props = defineProps<{
-    label: string
-    onClick?: () => void
-    hasSubmenu?: boolean
-    as: string | Component
-    disabled?: boolean
-    
-}>()
+const props = withDefaults(defineProps<{
+  label: string
+  onClick?: () => void
+  hasSubmenu?: boolean
+  as?: string | Component
+  disabled?: boolean
+}>(), {
+    as: 'button',
+})
+if (props.as === 'template'){
+  throw new Error('as="template" is not supported')
+}
+
 const handleClick = (e: Event, close: () => any) => {
     if(isLink(props.as)) return
     e.preventDefault()
