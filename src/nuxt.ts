@@ -1,4 +1,4 @@
-import { addTemplate, defineNuxtModule } from '@nuxt/kit'
+import { addComponent, addTemplate, defineNuxtModule } from '@nuxt/kit'
 import { HalcyonPluginOptions, HalcyonTheme, makeTheme } from './plugin'
 import baseTheme from './base'
 import reset from './reset'
@@ -8,6 +8,38 @@ export interface HalcyonNuxtOptions {
   excludeBase?: boolean,
   excludeReset?: boolean
 }
+
+/*
+
+    snackbar
+*/
+
+const componentNames = [
+    'HButton',
+    'HBottomAppBar',
+    'HCard',
+    'HCheckbox',
+    'HCombobox',
+    'HDialog',
+    'HDivider',
+    'HIconButton',
+    'HFloatingActionButton',
+    'HMenu',
+    'HMenuButton',
+    'HMenuDivider',
+    'HNavigationBar',
+    'HNavigationButton',
+    'HNavigationDrawer',
+    'HNavigationRail',
+    'HSegmentedButton',
+    'HSelect',
+    'HSnackbar',
+    'HSubmenu',
+    'HSwitch',
+    'HTextField',
+    'HTooltip',
+    'HTopAppBar',
+]
 
 export default defineNuxtModule<HalcyonNuxtOptions>({
   meta: {
@@ -38,6 +70,10 @@ export default defineNuxtModule<HalcyonNuxtOptions>({
         getContents: () => reset
       })
     }
+
+    componentNames.forEach(name => {
+      addComponent({ name, filePath: 'halcyon-vue' })
+    })
 
     nuxt.options.css.push('halcyon-vue/style')
     nuxt.options.css.push('#build/halcyon-theme.css')
