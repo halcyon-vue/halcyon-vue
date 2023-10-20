@@ -13,7 +13,6 @@ const emit = defineEmits<{ (e: 'update:modelValue', modelValue: boolean): any; }
 const value = useVModel(props, "modelValue", emit)
 const toggle = () => {
   value.value = !value.value
-  emit('update:modelValue', value.value)
 }
 
 const slots = useSlots()
