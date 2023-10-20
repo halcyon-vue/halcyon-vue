@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
+import { useVModel } from "@vueuse/core";
 
 const props = defineProps<{
   id: string;
@@ -7,9 +8,9 @@ const props = defineProps<{
   modelValue?: boolean;
 }>()
 
-const emit = defineEmits<{(e: 'update:modelValue', modelValue: boolean): any;}>()
+const emit = defineEmits<{ (e: 'update:modelValue', modelValue: boolean): any; }>()
 
-const value = ref(props.modelValue)
+const value = useVModel(props, "modelValue", emit)
 const toggle = () => {
   value.value = !value.value
   emit('update:modelValue', value.value)
@@ -23,18 +24,12 @@ const hasIcon = computed(
 
 <template>
   <label class="switch">
-    <input
-      :disabled="disabled"
-      :id="id"
-      type="checkbox"
-      @input="toggle"
-      :checked="value"
-    />
+    <input :disabled="disabled" :id="id" type="checkbox" @input="toggle" :checked="value" />
     <span class="thumb" :class="{ 'has-icon': hasIcon }">
       <slot name="on" v-if="value && hasIcon" />
-      <span v-else-if="!value && hasIcon" class="off-container"
-        ><slot name="off"
-      /></span>
+      <span v-else-if="!value && hasIcon" class="off-container">
+        <slot name="off" />
+      </span>
       <template v-else>&nbsp;</template>
     </span>
     <span class="slider" :aria-label="value ? 'on' : 'off'" />
@@ -43,6 +38,7 @@ const hasIcon = computed(
 
 <style scoped lang="scss">
 @use "../util";
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -67,7 +63,7 @@ const hasIcon = computed(
   transition-property: all;
 }
 
-input:not(:disabled) ~ .slider {
+input:not(:disabled)~.slider {
   cursor: pointer;
 }
 
@@ -81,15 +77,15 @@ input:not(:disabled) ~ .slider {
   border-radius: 32px;
 }
 
-input:not(:checked) ~ .slider {
+input:not(:checked)~.slider {
   border: 2px solid var(--halcyon-outline);
 }
 
-input:disabled ~ .slider {
+input:disabled~.slider {
   background-color: var(--halcyon-on-surface-o12);
 }
 
-input:disabled:not(:checked) ~ .slider {
+input:disabled:not(:checked)~.slider {
   border: 2px solid var(--halcyon-on-surface-o38);
 }
 
@@ -123,39 +119,39 @@ input:disabled:not(:checked) ~ .slider {
   left: 2px;
 }
 
-input:not(:disabled) ~ .thumb {
+input:not(:disabled)~.thumb {
   cursor: pointer;
 }
 
-input:disabled ~ .thumb {
+input:disabled~.thumb {
   background-color: var(--halcyon-on-surface-o38);
 }
 
-.switch:hover input:not(:disabled) ~ .thumb {
+.switch:hover input:not(:disabled)~.thumb {
   box-shadow: 0 0 0 12px var(--halcyon-on-surface-o8);
   background-color: var(--halcyon-on-surface-variant);
 }
 
-.switch:hover input:not(:disabled):checked ~ .thumb {
+.switch:hover input:not(:disabled):checked~.thumb {
   box-shadow: 0 0 0 12px var(--halcyon-primary-o8);
   background-color: var(--halcyon-primary-container);
 }
 
-.switch input:not(:disabled):focus ~ .thumb {
+.switch input:not(:disabled):focus~.thumb {
   box-shadow: 0 0 0 12px var(--halcyon-on-surface-o12);
   background-color: var(--halcyon-on-surface-variant);
 }
 
-.switch input:not(:disabled):focus:checked ~ .thumb {
+.switch input:not(:disabled):focus:checked~.thumb {
   box-shadow: 0 0 0 12px var(--halcyon-primary-o12);
   background-color: var(--halcyon-primary-container);
 }
 
-.switch input:not(:disabled):active ~ .slider {
+.switch input:not(:disabled):active~.slider {
   border-color: var(--halcyon-on-surface-variant);
 }
 
-.switch input:not(:disabled):active ~ .thumb {
+.switch input:not(:disabled):active~.thumb {
   box-shadow: 0 0 0 4px var(--halcyon-on-surface-o12);
   background-color: var(--halcyon-on-surface-variant);
   height: 30px;
@@ -164,11 +160,11 @@ input:disabled ~ .thumb {
   left: -1px;
 }
 
-.switch input:not(:disabled):active ~ .thumb .off-container {
+.switch input:not(:disabled):active~.thumb .off-container {
   left: 4px;
 }
 
-.switch input:not(:disabled):active:checked ~ .thumb {
+.switch input:not(:disabled):active:checked~.thumb {
   box-shadow: 0 0 0 4px var(--halcyon-primary-o12);
   background-color: var(--halcyon-primary-container);
   height: 28px;
@@ -177,34 +173,34 @@ input:disabled ~ .thumb {
   left: 6px;
 }
 
-.switch input:not(:disabled):active:checked ~ .thumb.has-icon {
+.switch input:not(:disabled):active:checked~.thumb.has-icon {
   left: 2px;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   border: none;
 }
 
-input:not(:disabled):checked ~ .slider {
+input:not(:disabled):checked~.slider {
   background-color: var(--halcyon-primary);
 }
 
-input:focus ~ .slider {
+input:focus~.slider {
   box-shadow: 0 0 1px var(--halcyon-primary);
 }
 
-input:checked ~ .thumb {
+input:checked~.thumb {
   transform: translateX(18px);
   width: 24px;
   height: 24px;
   bottom: 4px;
 }
 
-input:checked ~ .thumb.has-icon {
+input:checked~.thumb.has-icon {
   transform: translateX(20px);
 }
 
-input:not(:disabled):checked ~ .thumb {
+input:not(:disabled):checked~.thumb {
   background-color: var(--halcyon-on-primary);
   color: var(--halcyon-primary);
 }
