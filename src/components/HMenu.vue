@@ -27,20 +27,13 @@ const vWatchSize = {
 
 <template>
   <Menu as="div" class="menu-container">
-    <MenuButton as="template">
+    <MenuButton>
       <slot name="button" />
     </MenuButton>
     <Transition name="menu">
 
-      <MenuItems
-        as="div"
-        class="menu-items"
-        :class="{ scrollable, submenu: _isSubmenu }"
-        :static="_isSubmenu"
-        v-if="_isSubmenu ? _open : true"
-        ref="menuItems"
-        v-watch-size
-      >
+      <MenuItems as="div" class="menu-items" :class="{ scrollable, submenu: _isSubmenu }" :static="_isSubmenu"
+        v-if="_isSubmenu ? _open : true" ref="menuItems" v-watch-size>
         <slot name="content" ref="menuItems" />
       </MenuItems>
     </Transition>
@@ -49,6 +42,7 @@ const vWatchSize = {
 
 <style scoped lang="scss">
 @use "../util";
+
 .menu-container {
   position: relative;
 }
@@ -60,7 +54,7 @@ const vWatchSize = {
   border-radius: 4px;
 
   z-index: var(--halcyon-menu-z);
-  
+
   background-color: var(--halcyon-surface-container);
   color: var(--halcyon-on-surface);
 
@@ -74,7 +68,7 @@ const vWatchSize = {
     overflow-y: auto;
   }
 
-  &:deep(:is(.menu-container,[aria-haspopup="menu"])) {
+  &:deep(:is(.menu-container, [aria-haspopup="menu"])) {
     width: 100%;
   }
 }
@@ -92,6 +86,7 @@ const vWatchSize = {
 .menu-leave-active {
   transition: all util.$duration-short-2 util.$te-standard;
   transform-origin: top left;
+
   &.open-left {
     transform-origin: top right;
   }
